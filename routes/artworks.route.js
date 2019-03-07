@@ -1,9 +1,10 @@
 const express = require('express');
+const ArtworkController = require('../controllers/artwork.controller');
+
 const router = express.Router();
-const Artworks = require('../controllers/Artworks');
 
 router
   .route('/')
-  .get(Artworks.getAll)
+  .get(ArtworkController.getAll)
 
 module.exports = router;
