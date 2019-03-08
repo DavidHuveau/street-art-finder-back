@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "656b7beb-0618-4b85-ab16-7eff4dbc9843",
+		"name": "street-art-finder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "artworks-POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Sophie\",\n\t\"age\": 20\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "artworks-GET_ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

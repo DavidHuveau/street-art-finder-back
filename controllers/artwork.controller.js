@@ -1,6 +1,7 @@
 const ArtworkModel = require('../models/artwork.model');
 
 const Artwork = class {
+  // TODO add the max parameter
   static getAll(req, res) {
     ArtworkModel.find({})
     .then(data => res.send(data))
@@ -43,18 +44,18 @@ const Artwork = class {
 
     artwork.save()
     .then(data => {
-      res.send(data);
+      res.status(201).send(data);
     }).catch(err => {
       res.status(500).send({
           message: err.message
       });
     });
-
   }
+
+  // TODO add update function
+
+  // TODO add delete function
+
 };
-// TODOS:
-//   static getAll(max) {
-//       static updateOne(id, name) {
-//         static deleteOne(id) {
 
 module.exports = Artwork;
