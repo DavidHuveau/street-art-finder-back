@@ -6,5 +6,9 @@ const router = express.Router();
 router
   .route('/')
   .get(ArtworkController.getAll)
+  .post(ArtworkController.create)
+router
+  .route('/:id')
+  .get(ArtworkController.getById)
 
 module.exports = router;

@@ -7,18 +7,30 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-const UserModel = mongoose.model("User", userSchema);
-console.log("User", JSON.stringify(UserModel));
+// import mongoose from "mongoose";
 
-const Artwork = class {
-  static getAll() {
-    return new Promise((resolve, reject) => {
-      UserModel
-      .find({})
-      .then(data => resolve(data))
-      .catch(err => reject(err));
-    });
-  };
-};
+// const Schema = mongoose.Schema;
 
-module.exports = Artwork;
+// // Create the User Schema.
+// const UserSchema = new Schema({
+//   id: {
+//     type: String,
+//     required: true,
+//     unique: true
+//   },
+//   name: {
+//     type: String,
+//     required: true
+//   },
+//   email: {
+//     type: String,
+//     required: true
+//   }
+// });
+
+// const User = mongoose.model("User", UserSchema);
+
+// export default User;
+
+
+module.exports = mongoose.model("User", userSchema);
