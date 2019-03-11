@@ -28,6 +28,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(`${ROOT_API}/artworks`, require("./routes/artworks.route"));
+app.use(`${ROOT_API}/countries`, require("./routes/countries.route"));
 app.use((req, res) => {
   res.status(404).send('Sorry cant find that!');
 });
