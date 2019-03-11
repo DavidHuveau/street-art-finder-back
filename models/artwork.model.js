@@ -1,38 +1,58 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  name: {
+const artworkSchema = new mongoose.Schema({
+  userName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3
+  },
+  adressStreet: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true,
+    minlength: 3
+  },
+  zipCode: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true,
+    minlength: 3
+  },
+  city: {
+    type: String,
+    required: true,
+    uppercase: true,
+    trim: true,
+    minlength: 3
+  },
+  description: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true,
+    minlength: 5
+  },
+  photoFileName: {
     type: String,
     required: true
   },
-  age: {
-    type: Number,
-    required: true
+  isActivated: {
+    type: Boolean,
+    default: true
   },
+  isPublished: {
+    type: Boolean,
+    default: false
+  }
+  // country_id: {
+  //   type: Schema.Types.ObjectId,
+  //   required: true
+  // }
 }, {
   timestamps: true
 });
 
-// import mongoose from "mongoose";
-
-// const Schema = mongoose.Schema;
-
-// // Create the User Schema.
-// const UserSchema = new Schema({
-//   id: {
-//     type: String,
-//     required: true,
-//     unique: true
-//   },
-//   name: {
-//     type: String,
-//     required: true
-//   }
-// });
-
-// const User = mongoose.model("User", UserSchema);
-
-// export default User;
-
-
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Artwork", artworkSchema);

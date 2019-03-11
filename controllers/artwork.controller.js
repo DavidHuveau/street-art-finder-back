@@ -44,8 +44,12 @@ const Artwork = class {
     }
 
     const artwork = new ArtworkModel({
-      name: req.body.name,
-      age: req.body.age
+      userName: req.body.userName,
+      adressStreet: req.body.adressStreet,
+      zipCode: req.body.zipCode,
+      city: req.body.city,
+      description: req.body.description,
+      photoFileName: req.body.photoFileName
     });
 
     artwork.save()
@@ -67,8 +71,14 @@ const Artwork = class {
 
     const id = req.params.id;
     ArtworkModel.findByIdAndUpdate(id, {
-      name: req.body.name,
-      age: req.body.age
+      userName: req.body.userName,
+      adressStreet: req.body.adressStreet,
+      zipCode: req.body.zipCode,
+      city: req.body.city,
+      description: req.body.description,
+      photoFileName: req.body.photoFileName,
+      isActivated: req.body.isActivated,
+      isPublished:  req.body.isPublished
     }, {new: true})
     .then(data => {
       if (!data) {

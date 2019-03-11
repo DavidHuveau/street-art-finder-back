@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const databaseConfig = require('./models/database.config');
 const express = require("express");
 const morgan = require('morgan');
-const dotenv = require('dotenv').config();
 const bodyParser = require('body-parser');
 
+require('dotenv').config();
 const SERVER_PORT = process.env.SERVER_PORT;
 const ROOT_API = process.env.ROOT_API;
 
