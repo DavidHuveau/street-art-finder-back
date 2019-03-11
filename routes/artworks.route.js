@@ -10,5 +10,6 @@ router
 router
   .route('/:id')
   .get(ArtworkController.getById)
+  .put(ArtworkController.update)
 
 module.exports = router;
