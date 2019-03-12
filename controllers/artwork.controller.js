@@ -101,9 +101,52 @@ const Artwork = class {
     });
   }
 
-  // TODO add delete function
   static delete(req, res) {
+    const id = req.params.id;
+    ArtworkModel.findByIdAndUpdate(id, {
+      isActivated: false
+    }, {new: true})
+    .then(data => {
+      if (!data) {
+        return res.status(404).send({
+          message: "Data not found with id: " + id
+        });
+      }
+      res.status(204).send();
+    })
+    .catch(err => {
+      // format: /^[0-9a-fA-F]{24}$/
+      if(err.kind === 'ObjectId') {
+        return res.status(422).send({
+            message: "ObjectId failed for: " + id
+        });
+      }
+      res.status(500).send({
+        message: "Something wrong  with id: " + id
+      });
+    });
+  }
 
+  static search(req, res) {
+    // const query = {
+    //   city: req.params.city,
+    //   zipCode: req.params.zipCode,
+    //   adressStreet: req.params.adressStreet
+    // };
+    // ArtworkModel.find(query)
+    // .then(data => {
+    //   if (!data) {
+    //     return res.status(404).send({
+    //       message: "Data not found"
+    //     });
+    //   }
+    //   res.send(data);
+    // })
+    // .catch(err => {
+    //   res.status(500).send({
+    //     message: "Something wrong searching"
+    //   });
+    // });
   }
 };
 

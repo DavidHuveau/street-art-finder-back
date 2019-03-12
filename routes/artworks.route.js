@@ -11,5 +11,8 @@ router
   .route('/:id')
   .get(ArtworkController.getById)
   .put(ArtworkController.update)
+  .delete(ArtworkController.delete)
+router.route('/search')
+  .get(ArtworkController.search)
 
 module.exports = router;

@@ -122,6 +122,57 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "artworks-DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/5c86170a238e7209550e03ee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						"5c86170a238e7209550e03ee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "countries-GET_ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"countries"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
