@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userName\": \"Paolo\",\n\t\"adressStreet\":\"26 bis boulevard Pasteur   \",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\"\n}"
+					"raw": "{\n\t\"userName\": \"Roger\",\n\t\"adressStreet\":\"1 rue de PAsteur\",\n\t\"zipCode\": \"51101\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/v1/artworks/",
@@ -169,6 +169,47 @@
 						"api",
 						"v1",
 						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "serach",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/search/?city= reims &zipCode=51100&adressStreet=BIS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": " reims "
+						},
+						{
+							"key": "zipCode",
+							"value": "51100"
+						},
+						{
+							"key": "adressStreet",
+							"value": "BIS"
+						}
 					]
 				}
 			},

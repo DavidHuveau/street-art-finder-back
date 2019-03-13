@@ -128,25 +128,31 @@ const Artwork = class {
   }
 
   static search(req, res) {
-    // const query = {
-    //   city: req.params.city,
-    //   zipCode: req.params.zipCode,
-    //   adressStreet: req.params.adressStreet
-    // };
-    // ArtworkModel.find(query)
-    // .then(data => {
-    //   if (!data) {
-    //     return res.status(404).send({
-    //       message: "Data not found"
-    //     });
-    //   }
-    //   res.send(data);
-    // })
-    // .catch(err => {
-    //   res.status(500).send({
-    //     message: "Something wrong searching"
-    //   });
-    // });
+    let query = {};
+    if (req.query.city) query.city = req.query.city;
+    if (req.query.zipCode) query.zipCode = req.query.zipCode;
+    if (req.query.adressStreet) query.adressStreet = { '$regex' : req.query.adressStreet, '$options' : 'i' };
+
+    if(!Object.keys(query).length) {
+      return res.status(400).send({
+          message: "queries parameters (city/zipCode/adressStreet) not defined: " + JSON.stringify(req.query)
+      });
+    }
+
+    ArtworkModel.find(query)
+    .then(data => {
+      if (!data) {
+        return res.status(404).send({
+          message: "Data not found"
+        });
+      }
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Something wrong searching"
+      });
+    });
   }
 };
 
