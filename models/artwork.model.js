@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const artworkSchema = new mongoose.Schema({
+const artworkSchema = new Schema({
   userName: {
     type: String,
     required: true,
@@ -46,11 +47,12 @@ const artworkSchema = new mongoose.Schema({
   isPublished: {
     type: Boolean,
     default: false
+  },
+  country: {
+    type: Schema.Types.ObjectId,
+    ref: 'Country',
+    required: true
   }
-  // country_id: {
-  //   type: Schema.Types.ObjectId,
-  //   required: true
-  // }
 }, {
   timestamps: true
 });

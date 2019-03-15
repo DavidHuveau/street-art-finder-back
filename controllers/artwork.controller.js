@@ -4,6 +4,7 @@ const Artwork = class {
   // TODO add the max parameter
   static getAll(req, res) {
     ArtworkModel.find({})
+    .populate('country')
     .then(data => res.send(data))
     .catch(err => {
       res.status(500).send({
@@ -15,6 +16,7 @@ const Artwork = class {
   static getById(req, res) {
     const id = req.params.id;
     ArtworkModel.findById(id)
+    .populate('country')
     .then(data => {
       if (!data) {
         return res.status(404).send({
@@ -49,15 +51,23 @@ const Artwork = class {
       zipCode: req.body.zipCode,
       city: req.body.city,
       description: req.body.description,
-      photoFileName: req.body.photoFileName
+      photoFileName: req.body.photoFileName,
+      country: req.body.country
     });
 
     artwork.save()
     .then(data => {
-      res.status(201).send(data);
+      ArtworkModel.findById(data._id).populate('country')
+      .then(data => {
+        res.status(201).send(data);
+      }).catch(err => {
+        res.status(500).send({
+          message: "Something wrong creating"
+        });
+      })
     }).catch(err => {
       res.status(500).send({
-          message: err.message
+          message: "Something wrong creating"
       });
     });
   }
@@ -78,8 +88,10 @@ const Artwork = class {
       description: req.body.description,
       photoFileName: req.body.photoFileName,
       isActivated: req.body.isActivated,
-      isPublished:  req.body.isPublished
+      isPublished:  req.body.isPublished,
+      country: req.body.country
     }, {new: true})
+    .populate('country')
     .then(data => {
       if (!data) {
         return res.status(404).send({
@@ -140,6 +152,7 @@ const Artwork = class {
     }
 
     ArtworkModel.find(query)
+    .populate('country')
     .then(data => {
       if (!data) {
         return res.status(404).send({

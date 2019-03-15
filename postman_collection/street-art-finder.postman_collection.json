@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userName\": \"Roger\",\n\t\"adressStreet\":\"1 rue de PAsteur\",\n\t\"zipCode\": \"51101\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\"\n}"
+					"raw": "{\n\t\"userName\": \"Alfred\",\n\t\"adressStreet\":\"1 rue de PAsteur\",\n\t\"zipCode\": \"51101\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\",\n\t\"country\": \"5c87d82de78b4e40b133c51a\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/v1/artworks/",
@@ -74,7 +74,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/5c86170a238e7209550e03ee",
+					"raw": "http://localhost:8080/api/v1/artworks/5c8a09f430451905e4458c6c",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -84,7 +84,7 @@
 						"api",
 						"v1",
 						"artworks",
-						"5c86170a238e7209550e03ee"
+						"5c8a09f430451905e4458c6c"
 					]
 				}
 			},
@@ -104,10 +104,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userName\": \"Paolo\",\n\t\"adressStreet\":\"26 bis boulevard Pasteur   \",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\",\n\t\"isPublished\": true,\n\t\"isActivated\": true\n}"
+					"raw": "{\n\t\"userName\": \"Dave\",\n\t\"adressStreet\":\"26 bis boulevard Pasteur   \",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\",\n\t\"isPublished\": true,\n\t\"isActivated\": true,\n\t\"country\": \"5c87d82de78b4e40b133c51a\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/5c86170a238e7209550e03ee",
+					"raw": "http://localhost:8080/api/v1/artworks/5c8a09f430451905e4458c6c",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -117,7 +117,7 @@
 						"api",
 						"v1",
 						"artworks",
-						"5c86170a238e7209550e03ee"
+						"5c8a09f430451905e4458c6c"
 					]
 				}
 			},
@@ -175,7 +175,7 @@
 			"response": []
 		},
 		{
-			"name": "serach",
+			"name": "artwork-search",
 			"request": {
 				"method": "GET",
 				"header": [],

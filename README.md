@@ -5,3 +5,7 @@ Import Seeds:
 https://docs.mongodb.com/manual/reference/program/mongoimport/#cmdoption-mongoimport-uri
 command with the admin user:
 mongoimport --uri "<connectionString>" --collection <collectionName> --drop --file seeds/countries.json
+
+The OpenCage Geocoder provides reverse (lat/long to text) and forward (text to lat/long) geocoding via a RESTful API:
+https://opencagedata.com/
+
