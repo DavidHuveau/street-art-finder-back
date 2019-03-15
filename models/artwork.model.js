@@ -57,4 +57,19 @@ const artworkSchema = new Schema({
   timestamps: true
 });
 
+function autoPopulateCountries (next) {
+  // `this` is an instance of mongoose.Query
+  this.populate('country');
+  next();
+}
+
+artworkSchema.pre('find', autoPopulateCountries);
+// rien inventé de nouveau
+
+artworkSchema.post('save', (doc, next) => {
+  doc.populate('country').execPopulate(() => {
+    next();
+  });
+});
+
 module.exports = mongoose.model("Artwork", artworkSchema);
