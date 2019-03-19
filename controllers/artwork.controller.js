@@ -1,7 +1,8 @@
 const ArtworkModel = require('../models/artwork.model');
+const convertAdressToGpsCoordonates = require('./coordonates.functions');
 
 const Artwork = class {
-  // TODO add the max parameter
+  // TODO: add the max parameter
   static getAll(req, res) {
     ArtworkModel.find({})
     // .populate('country')
@@ -13,6 +14,7 @@ const Artwork = class {
     });
   };
 
+  // TODO: populate with the middleware for findById
   static getById(req, res) {
     const id = req.params.id;
     ArtworkModel.findById(id)
@@ -38,42 +40,59 @@ const Artwork = class {
     });
   };
 
+  //TODO: use async/await
   static create(req, res) {
     if(!Object.keys(req.body).length) {
       return res.status(400).send({
           message: "Data content can not be empty"
       });
     }
-
-    const artwork = new ArtworkModel({
-      userName: req.body.userName,
-      adressStreet: req.body.adressStreet,
-      zipCode: req.body.zipCode,
-      city: req.body.city,
-      description: req.body.description,
-      photoFileName: req.body.photoFileName,
-      country: req.body.country
-    });
-
-    artwork.save()
+    // ========================================================
+    // TODO: make the queryString with body values
+    // ========================================================
+    const queryString = "26 bis boulevard pasteur, 51100, reims";
+    const languageCode = "fr";
+    convertAdressToGpsCoordonates(languageCode, queryString)
     .then(data => {
-      res.status(201).send(data);
-      // ArtworkModel.findById(data._id)
-      // .populate('country')
-      // .then(data => {
-      //   res.status(201).send(data);
-      // }).catch(err => {
-      //   res.status(500).send({
-      //     message: "Something wrong creating"
-      //   });
-      // })
-    }).catch(err => {
-      res.status(500).send({
-          message: "Something wrong creating"
+      const artwork = new ArtworkModel({
+        userName: req.body.userName,
+        adressStreet: req.body.adressStreet,
+        zipCode: req.body.zipCode,
+        city: req.body.city,
+        description: req.body.description,
+        photoFileName: req.body.photoFileName,
+        country: req.body.country,
+        location: {
+          type: "Point",
+          coordinates: [data.lng, data.lat]
+        }
       });
-    });
+      artwork.save()
+      .then(data => {
+        res.status(201).send(data);
+        // ArtworkModel.findById(data._id)
+        // .populate('country')
+        // .then(data => {
+        //   res.status(201).send(data);
+        // }).catch(err => {
+        //   res.status(500).send({
+        //     message: "Something wrong creating"
+        //   });
+        // })
+      }).catch(err => {
+        res.status(500).send({
+            message: "Something wrong creating"
+        });
+      });
+    })
+    .catch(err => {
+      return res.status(500).send({
+        message: err.message
+      });
+    })
   }
 
+  // TODO: populate with the middleware for findByIdAndUpdate
   static update(req, res){
     if(!Object.keys(req.body).length) {
       return res.status(400).send({
@@ -141,6 +160,7 @@ const Artwork = class {
     });
   }
 
+  // TODO: use location field for search the artworks
   static search(req, res) {
     let query = {};
     if (req.query.city) query.city = req.query.city;

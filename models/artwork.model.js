@@ -52,6 +52,17 @@ const artworkSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Country',
     required: true
+  },
+  location: {
+    type: {
+      type: String, // Don't do `{ location: { type: String } }`
+      enum: ['Point'], // 'location.type' must be 'Point'
+      required: true
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
   }
 }, {
   timestamps: true
@@ -64,8 +75,6 @@ function autoPopulateCountries (next) {
 }
 
 artworkSchema.pre('find', autoPopulateCountries);
-// rien inventé de nouveau
-
 artworkSchema.post('save', (doc, next) => {
   doc.populate('country').execPopulate(() => {
     next();
