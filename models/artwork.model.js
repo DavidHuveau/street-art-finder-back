@@ -70,13 +70,13 @@ const artworkSchema = new Schema({
 
 function autoPopulateCountries (next) {
   // `this` is an instance of mongoose.Query
-  this.populate('country');
+  this.populate('country', 'name');
   next();
 }
 
 artworkSchema.pre('find', autoPopulateCountries);
 artworkSchema.post('save', (doc, next) => {
-  doc.populate('country').execPopulate(() => {
+  doc.populate('country', 'name').execPopulate(() => {
     next();
   });
 });

@@ -2,10 +2,8 @@ const ArtworkModel = require('../models/artwork.model');
 const convertAdressToGpsCoordonates = require('./coordonates.functions');
 
 const Artwork = class {
-  // TODO: add the max parameter
   static getAll(req, res) {
     ArtworkModel.find({})
-    // .populate('country')
     .then(data => res.send(data))
     .catch(err => {
       res.status(500).send({
@@ -14,11 +12,9 @@ const Artwork = class {
     });
   };
 
-  // TODO: populate with the middleware for findById
   static getById(req, res) {
     const id = req.params.id;
-    ArtworkModel.findById(id)
-    .populate('country')
+    ArtworkModel.find({ _id: id })
     .then(data => {
       if (!data) {
         return res.status(404).send({
@@ -42,17 +38,27 @@ const Artwork = class {
 
   //TODO: use async/await
   static create(req, res) {
+    let queryString = "";
+    let queryCountryCode = "";
+
     if(!Object.keys(req.body).length) {
       return res.status(400).send({
           message: "Data content can not be empty"
       });
+    } else {
+      const { city, zipCode, adressStreet, countryCode } = req.body;
+      if(!city || !zipCode || !adressStreet || !countryCode) {
+        return res.status(400).send({
+            message: "Missing fields in the body: city or zipCode or adressStreet or countryCode"
+        });
+      }
+      else {
+        queryString = `${adressStreet}, ${zipCode}, ${city}`;
+        queryCountryCode = countryCode;
+      }
     }
-    // ========================================================
-    // TODO: make the queryString with body values
-    // ========================================================
-    const queryString = "26 bis boulevard pasteur, 51100, reims";
-    const languageCode = "fr";
-    convertAdressToGpsCoordonates(languageCode, queryString)
+
+    convertAdressToGpsCoordonates(queryCountryCode, queryString)
     .then(data => {
       const artwork = new ArtworkModel({
         userName: req.body.userName,
@@ -70,15 +76,6 @@ const Artwork = class {
       artwork.save()
       .then(data => {
         res.status(201).send(data);
-        // ArtworkModel.findById(data._id)
-        // .populate('country')
-        // .then(data => {
-        //   res.status(201).send(data);
-        // }).catch(err => {
-        //   res.status(500).send({
-        //     message: "Something wrong creating"
-        //   });
-        // })
       }).catch(err => {
         res.status(500).send({
             message: "Something wrong creating"
@@ -110,9 +107,10 @@ const Artwork = class {
       photoFileName: req.body.photoFileName,
       isActivated: req.body.isActivated,
       isPublished:  req.body.isPublished,
-      country: req.body.country
+      country: req.body.country,
+      location: req.body.location
     }, {new: true})
-    .populate('country')
+    .populate('country', 'name')
     .then(data => {
       if (!data) {
         return res.status(404).send({
@@ -162,33 +160,53 @@ const Artwork = class {
 
   // TODO: use location field for search the artworks
   static search(req, res) {
-    let query = {};
-    if (req.query.city) query.city = req.query.city;
-    if (req.query.zipCode) query.zipCode = req.query.zipCode;
-    if (req.query.adressStreet) query.adressStreet = { '$regex' : req.query.adressStreet, '$options' : 'i' };
+    // if (req.query.city) query.city = req.query.city;
+    // if (req.query.zipCode) query.zipCode = req.query.zipCode;
+    // if (req.query.adressStreet) query.adressStreet = { '$regex' : req.query.adressStreet, '$options' : 'i' };
 
-    if(!Object.keys(query).length) {
+    // if(!Object.keys(query).length) {
+    //   return res.status(400).send({
+    //       message: "queries parameters (city/zipCode/adressStreet) not defined: " + JSON.stringify(req.query)
+    //   });
+    // }
+    let queryString = "";
+    let queryCountryCode = "";
+
+    if(!Object.keys(req.query).length) {
       return res.status(400).send({
-          message: "queries parameters (city/zipCode/adressStreet) not defined: " + JSON.stringify(req.query)
+          message: "query string can not be empty"
       });
-    }
-
-    ArtworkModel.find(query)
-    // .populate('country')
-    .then(data => {
-      if (!data) {
-        return res.status(404).send({
-          message: "Data not found"
+    } else {
+      const { city, countryCode } = req.query;
+      if(!city || !countryCode) {
+        return res.status(400).send({
+            message: "Missing fields in the query: city or countryCode"
         });
       }
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Something wrong searching"
+      else {
+        queryString = city;
+        queryCountryCode = countryCode;
+      }
+    }
+
+    convertAdressToGpsCoordonates(queryCountryCode, queryString)
+    .then(data => {
+      ArtworkModel.find({})
+      .then(data => {
+        if (!data) {
+          return res.status(404).send({
+            message: "Data not found"
+          });
+        }
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Something wrong searching"
+        });
       });
     });
-  }
+  };
 };
 
 module.exports = Artwork;
