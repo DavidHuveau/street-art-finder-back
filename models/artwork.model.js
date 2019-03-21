@@ -68,6 +68,8 @@ const artworkSchema = new Schema({
   timestamps: true
 });
 
+artworkSchema.index({ location: "2dsphere" });
+
 function autoPopulateCountries (next) {
   // `this` is an instance of mongoose.Query
   this.populate('country', 'name');

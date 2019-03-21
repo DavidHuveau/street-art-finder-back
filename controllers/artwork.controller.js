@@ -158,17 +158,8 @@ const Artwork = class {
     });
   }
 
-  // TODO: use location field for search the artworks
-  static search(req, res) {
-    // if (req.query.city) query.city = req.query.city;
-    // if (req.query.zipCode) query.zipCode = req.query.zipCode;
-    // if (req.query.adressStreet) query.adressStreet = { '$regex' : req.query.adressStreet, '$options' : 'i' };
-
-    // if(!Object.keys(query).length) {
-    //   return res.status(400).send({
-    //       message: "queries parameters (city/zipCode/adressStreet) not defined: " + JSON.stringify(req.query)
-    //   });
-    // }
+  // TODO: add an optional parameter for precision search (maxDistance)
+  static searchByCity(req, res) {
     let queryString = "";
     let queryCountryCode = "";
 
@@ -191,11 +182,21 @@ const Artwork = class {
 
     convertAdressToGpsCoordonates(queryCountryCode, queryString)
     .then(data => {
-      ArtworkModel.find({})
+      ArtworkModel.find({
+        location: {
+          $nearSphere: {
+            $geometry: {
+              type: "Point",
+              coordinates: [data.lng, data.lat]
+            },
+            $maxDistance: 10000
+          }
+        }
+      })
       .then(data => {
         if (!data) {
           return res.status(404).send({
-            message: "Data not found"
+            message: "Coordonates not found"
           });
         }
         res.send(data);
@@ -204,6 +205,39 @@ const Artwork = class {
         res.status(500).send({
           message: "Something wrong searching"
         });
+      });
+    })
+    .catch(err => {
+      return res.status(500).send({
+        message: err.message
+      });
+    });
+  }
+
+  static search(req, res) {
+    let query = {};
+    if (req.query.city) query.city = req.query.city;
+    if (req.query.zipCode) query.zipCode = req.query.zipCode;
+    if (req.query.adressStreet) query.adressStreet = { '$regex' : req.query.adressStreet, '$options' : 'i' };
+
+    if(!Object.keys(query).length) {
+      return res.status(400).send({
+          message: "queries parameters (city/zipCode/adressStreet) not defined: " + JSON.stringify(req.query)
+      });
+    }
+
+    ArtworkModel.find(query)
+    .then(data => {
+      if (!data) {
+        return res.status(404).send({
+          message: "Data not found"
+        });
+      }
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Something wrong searching"
       });
     });
   };

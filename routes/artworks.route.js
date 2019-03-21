@@ -9,6 +9,8 @@ router
   .post(ArtworkController.create)
 router.route('/search')
   .get(ArtworkController.search)
+router.route('/searchByCity')
+  .get(ArtworkController.searchByCity)
 router
   .route('/:id')
   .get(ArtworkController.getById)

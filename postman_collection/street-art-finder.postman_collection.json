@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userName\": \"Estelle\",\n\t\"adressStreet\":\"26 bis boulevard PAsteur\",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\",\n\t\"country\": \"5c87d82de78b4e40b133c51a\",\n\t\"countryCode\": \"FR\"\n}"
+					"raw": "{\n\t\"userName\": \"12 Rue Edouard Branly\",\n\t\"adressStreet\":\"31 Boulevard Paul Doumer\",\n\t\"zipCode\": \"51500\",\n\t\"city\": \"Taissy\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\",\n\t\"country\": \"5c87d82de78b4e40b133c55b\",\n\t\"countryCode\": \"FR\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/v1/artworks/",
@@ -184,7 +184,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/search/?city= reims &countryCode=FR",
+					"raw": "http://localhost:8080/api/v1/artworks/search/?city=reims&countryCode=FR",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -200,7 +200,44 @@
 					"query": [
 						{
 							"key": "city",
-							"value": " reims "
+							"value": "reims"
+						},
+						{
+							"key": "countryCode",
+							"value": "FR"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "artwork-searchByCity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/searchByCity/?city=reims&countryCode=FR",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						"searchByCity",
+						""
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "reims"
 						},
 						{
 							"key": "countryCode",
