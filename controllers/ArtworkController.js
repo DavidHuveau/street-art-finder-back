@@ -1,5 +1,5 @@
 const ArtworkModel = require("../models/ArtworkModel");
-const convertAdressToGpsCoordonates = require("../helpers/Coordonates");
+const convertAdressToGpsCoordonates = require("../tools/Coordonates");
 
 const Artwork = class {
   static getAll(req, res) {
@@ -39,15 +39,20 @@ const Artwork = class {
 
   // TODO: use async/await
   static create(req, res) {
-    let queryString = "";
-    let queryCountryCode = "";
     const { file } = req;
-    console.debug(file);
+    // console.debug(file);
 
     if (req.fileValidationError)
-      return res.status(400).json({ error: req.fileValidationError });
+      return res.status(400).send({
+        message: req.fileValidationError
+      });
     else if (!file)
-      return res.status(400).json({ error: "Please provide an image" });
+      return res.status(400).send({
+        message: "Please provide an image"
+      });
+
+    let queryString = "";
+    let queryCountryCode = "";
 
     if (!Object.keys(req.body).length) {
       return res.status(400).send({
