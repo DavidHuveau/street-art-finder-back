@@ -1,6 +1,6 @@
 const opencage = require('opencage-api-client');
 
-module.exports = (languageCode, queryString) => {
+const convertAdressToGpsCoordonates = (languageCode, queryString) => {
   return new Promise((resolve, reject) => {
     opencage
     .geocode({ q: queryString, language: languageCode })
@@ -24,3 +24,5 @@ module.exports = (languageCode, queryString) => {
     });
   });
 }
+
+module.exports = convertAdressToGpsCoordonates;
