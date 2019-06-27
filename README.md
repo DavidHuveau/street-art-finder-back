@@ -9,3 +9,5 @@ mongoimport --uri "<connectionString>" --collection <collectionName> --drop --fi
 The OpenCage Geocoder provides reverse (lat/long to text) and forward (text to lat/long) geocoding via a RESTful API:
 https://opencagedata.com/
 
+Node Express Image Upload And Resize Tutorial Example:
+https://appdividend.com/2019/02/14/node-express-image-upload-and-resize-tutorial-example/#Step_7_Resize_the_image

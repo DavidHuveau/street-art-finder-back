@@ -1,4 +1,4 @@
-const ArtworkModel = require("../models/artwork.model");
+const ArtworkModel = require("../models/ArtworkModel");
 const convertAdressToGpsCoordonates = require("../helpers/Coordonates");
 
 const Artwork = class {

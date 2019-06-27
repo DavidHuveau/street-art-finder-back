@@ -1,4 +1,4 @@
-const CountryModel = require('../models/country.model');
+const CountryModel = require('../models/CountryModel');
 
 const Country = class {
 
@@ -11,7 +11,7 @@ const Country = class {
       });
     });
   };
-  
+
 };
 
 module.exports = Country;

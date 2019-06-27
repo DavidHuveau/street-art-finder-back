@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const databaseConfig = require('./models/database.config');
+const databaseConfig = require('./models/DatabaseConfig');
 const express = require("express");
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -27,8 +27,8 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(`${ROOT_API}/artworks`, require("./routes/artworks.route"));
-app.use(`${ROOT_API}/countries`, require("./routes/countries.route"));
+app.use(`${ROOT_API}/artworks`, require("./routes/ArtworksRoute"));
+app.use(`${ROOT_API}/countries`, require("./routes/CountriesRoute"));
 app.use((req, res) => {
   res.status(404).send('Sorry cant find that!');
 });
