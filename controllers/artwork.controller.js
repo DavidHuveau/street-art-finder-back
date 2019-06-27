@@ -2,7 +2,6 @@ const ArtworkModel = require("../models/artwork.model");
 const convertAdressToGpsCoordonates = require("../helpers/Coordonates");
 
 const Artwork = class {
-
   static getAll(req, res) {
     ArtworkModel.find({})
       .then(data => res.send(data))
@@ -42,6 +41,13 @@ const Artwork = class {
   static create(req, res) {
     let queryString = "";
     let queryCountryCode = "";
+    const { file } = req;
+    console.debug(file);
+
+    if (req.fileValidationError)
+      return res.status(400).json({ error: req.fileValidationError });
+    else if (!file)
+      return res.status(400).json({ error: "Please provide an image" });
 
     if (!Object.keys(req.body).length) {
       return res.status(400).send({
@@ -69,7 +75,7 @@ const Artwork = class {
           zipCode: req.body.zipCode,
           city: req.body.city,
           description: req.body.description,
-          photoFileName: req.body.photoFileName,
+          photoFileName: file.filename,
           country: req.body.country,
           location: {
             type: "Point",
@@ -105,23 +111,22 @@ const Artwork = class {
 
     const { id } = req.params;
 
-    ArtworkModel
-      .findByIdAndUpdate(
-        id,
-        {
-          userName: req.body.userName,
-          adressStreet: req.body.adressStreet,
-          zipCode: req.body.zipCode,
-          city: req.body.city,
-          description: req.body.description,
-          photoFileName: req.body.photoFileName,
-          isActivated: req.body.isActivated,
-          isPublished: req.body.isPublished,
-          country: req.body.country,
-          location: req.body.location
-        },
-        { new: true }
-      )
+    ArtworkModel.findByIdAndUpdate(
+      id,
+      {
+        userName: req.body.userName,
+        adressStreet: req.body.adressStreet,
+        zipCode: req.body.zipCode,
+        city: req.body.city,
+        description: req.body.description,
+        // photoFileName: req.body.photoFileName,
+        isActivated: req.body.isActivated,
+        isPublished: req.body.isPublished,
+        country: req.body.country,
+        location: req.body.location
+      },
+      { new: true }
+    )
       .populate("country", "name")
       .then(data => {
         if (!data) {
