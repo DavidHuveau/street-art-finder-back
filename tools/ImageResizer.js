@@ -20,7 +20,7 @@ class Resize {
       .png()
       .toFile(filePath);
 
-    return fileName;
+    return resizedFileName;
   }
 
   static resizedFileName() {

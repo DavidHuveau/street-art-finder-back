@@ -1,8 +1,10 @@
-// const ImageResizer = require("./tools/ImageResizer");
+const ImageResizer = require("./tools/ImageResizer");
 
-const resize = (req, res, next) => {
+const DEST_FOLDER = "public/thumbnails";
+
+const resize = async (req, res, next) => {
   const { file } = req;
-  console.debug(file);
+  // console.debug(file);
 
   if (req.fileValidationError)
     res.status(400).send({
@@ -13,7 +15,11 @@ const resize = (req, res, next) => {
       message: "Please provide an image"
     });
   else {
-    console.debug(`>${file.filename} resized`);
+    const resizer = new ImageResizer(DEST_FOLDER);
+    const thumbnailFilename = await resizer.saveThumbnail(file.path);
+    console.debug(`Thumbnail > ${thumbnailFilename}`);
+    // return res.json({ name: thumbnailFilename });
+    req.thumbnailFilename = thumbnailFilename;
     next();
   }
 };

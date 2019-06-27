@@ -39,8 +39,9 @@ const Artwork = class {
 
   // TODO: use async/await
   static create(req, res) {
-    const { file } = req;
-    // console.debug(file);
+    const { file, thumbnailFilename } = req;
+    console.debug(file);
+    console.debug(`Thumbnail > ${thumbnailFilename}`);
 
     if (req.fileValidationError)
       return res.status(400).send({
@@ -80,7 +81,7 @@ const Artwork = class {
           zipCode: req.body.zipCode,
           city: req.body.city,
           description: req.body.description,
-          photoFileName: file.filename,
+          photoFileName: thumbnailFilename,
           country: req.body.country,
           location: {
             type: "Point",

@@ -166,4 +166,8 @@ $RECYCLE.BIN/
 # environment variables
 .env
 
+
+tmp/*
+public/*
+
 # End of https://www.gitignore.io/api/node,macos,linux,windows
