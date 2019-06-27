@@ -1,6 +1,7 @@
 const CountryModel = require('../models/country.model');
 
 const Country = class {
+
   static getAll(req, res) {
     CountryModel.find({})
     .then(data => res.send(data))
@@ -10,6 +11,7 @@ const Country = class {
       });
     });
   };
+  
 };
 
 module.exports = Country;
