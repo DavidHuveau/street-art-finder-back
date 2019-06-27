@@ -2,29 +2,14 @@ const express = require("express");
 const ArtworkController = require("../controllers/ArtworkController");
 const router = express.Router();
 const upload = require("../UploadMiddleware");
+const resize = require("../ResizerMiddleware");
 
 router
   .route("/")
   .get(ArtworkController.getAll)
   .post(
     upload.single("myFile"),
-    (req, res, next) => {
-      const { file } = req;
-      console.debug(file);
-
-      if (req.fileValidationError)
-        res.status(400).send({
-          message: req.fileValidationError
-        });
-      else if (!file)
-        res.status(400).send({
-          message: "Please provide an image"
-        });
-      else {
-        console.debug(`>${file.filename} resized`);
-        next();
-      }
-    },
+    resize,
     ArtworkController.create
   );
 router.route("/search").get(ArtworkController.search);
