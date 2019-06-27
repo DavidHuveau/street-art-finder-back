@@ -1,252 +1,255 @@
 {
-	"info": {
-		"_postman_id": "656b7beb-0618-4b85-ab16-7eff4dbc9843",
-		"name": "street-art-finder",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
+	"id": "437028f1-9067-cfd7-1f36-5941edbfa790",
+	"name": "street-art-finder",
+	"description": "",
+	"order": [
+		"cb6f39f2-c776-0072-19e0-5c8485fac66a",
+		"239794da-0429-0583-355b-7e20ee510fbc",
+		"5467b4a5-d2db-ec17-3564-c2b807c667ca",
+		"cb8c7f19-4bda-e299-909e-62d1bc5b1d1e",
+		"4311e498-7f68-5af0-a825-9b097fb91638",
+		"c05aac40-45e0-c1d4-efa2-ca4d65d2b79b",
+		"5839d484-9f37-88f9-2a7a-9a81151aaa58",
+		"f9499ea0-2ae2-ea87-c783-24eaf5d3165c"
+	],
+	"folders_order": [],
+	"folders": [],
+	"owner": "5425555",
+	"hasRequests": true,
+	"requests": [
 		{
-			"name": "artworks-POST",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"userName\": \"12 Rue Edouard Branly\",\n\t\"adressStreet\":\"31 Boulevard Paul Doumer\",\n\t\"zipCode\": \"51500\",\n\t\"city\": \"Taissy\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\",\n\t\"country\": \"5c87d82de78b4e40b133c55b\",\n\t\"countryCode\": \"FR\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"artworks",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
+			"id": "239794da-0429-0583-355b-7e20ee510fbc",
 			"name": "artworks-GET_ALL",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"artworks",
-						""
-					]
-				}
-			},
-			"response": []
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"method": "GET",
+			"headers": "",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"url": "http://localhost:8080/api/v1/artworks/",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [],
+			"collection_id": "437028f1-9067-cfd7-1f36-5941edbfa790"
 		},
 		{
-			"name": "artworks-GET_BY_ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/5c8b681a4d72d70bfc871655",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"artworks",
-						"5c8b681a4d72d70bfc871655"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "artworks-PUT",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"userName\": \"David\",\n\t\"adressStreet\":\"26 bis boulevard Pasteur   \",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\",\n\t\"isPublished\": true,\n\t\"isActivated\": true,\n\t\"country\": \"5c87d82de78b4e40b133c51a\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/5c8b681a4d72d70bfc871655",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"artworks",
-						"5c8b681a4d72d70bfc871655"
-					]
-				}
-			},
-			"response": []
-		},
-		{
+			"id": "4311e498-7f68-5af0-a825-9b097fb91638",
 			"name": "artworks-DELETE",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/5c86170a238e7209550e03ee",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"artworks",
-						"5c86170a238e7209550e03ee"
-					]
-				}
-			},
-			"response": []
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"method": "DELETE",
+			"headers": "",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"url": "http://localhost:8080/api/v1/artworks/5c86170a238e7209550e03ee",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [],
+			"collection_id": "437028f1-9067-cfd7-1f36-5941edbfa790"
 		},
 		{
-			"name": "countries-GET_ALL",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/countries",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"countries"
-					]
-				}
-			},
-			"response": []
+			"id": "5467b4a5-d2db-ec17-3564-c2b807c667ca",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/api/v1/artworks/5c91f3a319607009fa212852",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1561621318984,
+			"name": "artworks-GET_BY_ID",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"responses": [],
+			"rawModeData": ""
 		},
 		{
+			"id": "5839d484-9f37-88f9-2a7a-9a81151aaa58",
 			"name": "artwork-search",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"method": "GET",
+			"headers": "",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"url": "http://localhost:8080/api/v1/artworks/search/?city=reims&countryCode=FR",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "city",
+					"value": "reims"
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/search/?city=reims&countryCode=FR",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"artworks",
-						"search",
-						""
-					],
-					"query": [
-						{
-							"key": "city",
-							"value": "reims"
-						},
-						{
-							"key": "countryCode",
-							"value": "FR"
-						}
-					]
+				{
+					"key": "countryCode",
+					"value": "FR"
 				}
-			},
-			"response": []
+			],
+			"headerData": [],
+			"collection_id": "437028f1-9067-cfd7-1f36-5941edbfa790"
 		},
 		{
-			"name": "artwork-searchByCity",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+			"id": "c05aac40-45e0-c1d4-efa2-ca4d65d2b79b",
+			"name": "countries-GET_ALL",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"method": "GET",
+			"headers": "",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"url": "http://localhost:8080/api/v1/countries",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [],
+			"collection_id": "437028f1-9067-cfd7-1f36-5941edbfa790"
+		},
+		{
+			"id": "cb6f39f2-c776-0072-19e0-5c8485fac66a",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/api/v1/artworks/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "userName",
+					"value": "poulet",
+					"type": "text",
+					"enabled": true,
+					"description": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/artworks/searchByCity/?city=reims&countryCode=FR",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"artworks",
-						"searchByCity",
-						""
-					],
-					"query": [
-						{
-							"key": "city",
-							"value": "reims"
-						},
-						{
-							"key": "countryCode",
-							"value": "FR"
-						}
-					]
+				{
+					"key": "adressStreet",
+					"value": "31 Boulevard Paul Doumer",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "zipCode",
+					"value": "51500",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "city",
+					"value": "Taissy",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "description",
+					"value": "description",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "photoFileName",
+					"value": "123.png",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "country",
+					"value": "5c87d82de78b4e40b133c55b",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "countryCode",
+					"value": "FR",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "myFile",
+					"value": "7f270c4cfaced2640b4976047d1fcce0.jpg",
+					"description": "",
+					"type": "file",
+					"enabled": true
 				}
-			},
-			"response": []
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1561638273274,
+			"name": "artworks-POST",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"responses": []
+		},
+		{
+			"id": "cb8c7f19-4bda-e299-909e-62d1bc5b1d1e",
+			"name": "artworks-PUT",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"method": "PUT",
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\"userName\": \"David\",\n\t\"adressStreet\":\"26 bis boulevard Pasteur   \",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"photoFileName\": \"123.png\",\n\t\"isPublished\": true,\n\t\"isActivated\": true,\n\t\"country\": \"5c87d82de78b4e40b133c51a\"\n}",
+			"url": "http://localhost:8080/api/v1/artworks/5c8b681a4d72d70bfc871655",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"type": "text"
+				}
+			],
+			"collection_id": "437028f1-9067-cfd7-1f36-5941edbfa790"
+		},
+		{
+			"id": "f9499ea0-2ae2-ea87-c783-24eaf5d3165c",
+			"name": "artwork-searchByCity",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"method": "GET",
+			"headers": "",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"url": "http://localhost:8080/api/v1/artworks/searchByCity/?city=reims&countryCode=FR",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "city",
+					"value": "reims"
+				},
+				{
+					"key": "countryCode",
+					"value": "FR"
+				}
+			],
+			"headerData": [],
+			"collection_id": "437028f1-9067-cfd7-1f36-5941edbfa790"
 		}
 	]
 }
