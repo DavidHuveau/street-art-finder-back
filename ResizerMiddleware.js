@@ -17,8 +17,7 @@ const resize = async (req, res, next) => {
   else {
     const resizer = new ImageResizer(DEST_FOLDER);
     const thumbnailFilename = await resizer.saveThumbnail(file.path);
-    console.debug(`Thumbnail > ${thumbnailFilename}`);
-    // return res.json({ name: thumbnailFilename });
+    // console.debug(`Thumbnail > ${thumbnailFilename}`);
     req.thumbnailFilename = thumbnailFilename;
     next();
   }
