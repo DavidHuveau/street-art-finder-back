@@ -1,13 +1,12 @@
 const sharp = require("sharp");
-const uuidv4 = require("uuid/v4");
 
 class Resize {
   constructor(destFolder) {
     this.destFolder = destFolder;
   }
 
-  async saveThumbnail(initialFilePath) {
-    const resizedFileName = Resize.resizedFileName();
+  async generateThumbnail(initialFilePath) {
+    const resizedFileName = Resize.extractFileName(initialFilePath);
     const filePath = this.resizedFilePath(resizedFileName);
 
     await sharp(initialFilePath)
@@ -23,8 +22,25 @@ class Resize {
     return resizedFileName;
   }
 
-  static resizedFileName() {
-    return `${uuidv4()}.png`;
+  async generateArtwork(initialFilePath) {
+    const resizedFileName = Resize.extractFileName(initialFilePath);
+    const filePath = this.resizedFilePath(resizedFileName);
+
+    await sharp(initialFilePath)
+      .rotate() // auto-rotated using EXIF Orientation tag
+      .resize({
+        width: 200,
+        height: 200,
+        fit: sharp.fit.cover // crop to cover both provided dimensions
+      })
+      .png()
+      .toFile(filePath);
+
+    return resizedFileName;
+  }
+
+  static extractFileName(initialFilePath) {
+    return initialFilePath.split("/").pop() + ".png";
   }
 
   resizedFilePath(fileName) {
