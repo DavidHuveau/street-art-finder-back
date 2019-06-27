@@ -29,8 +29,8 @@ class Resize {
     await sharp(initialFilePath)
       .rotate() // auto-rotated using EXIF Orientation tag
       .resize({
-        width: 200,
-        height: 200,
+        width: 400,
+        height: 400,
         fit: sharp.fit.cover // crop to cover both provided dimensions
       })
       .png()

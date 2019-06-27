@@ -17,10 +17,18 @@ const resize = async (req, res, next) => {
     });
   else {
     const resizer1 = new ImageResizer(THUMBNAILS_FOLDER);
-    const thumbnailFilename = await resizer1.generateThumbnail(file.path);
-    // console.debug(`Thumbnail > ${thumbnailFilename}`);
-    req.thumbnailFilename = thumbnailFilename;
-    next();
+    const resizer2 = new ImageResizer(ARTWORKS_FOLDER);
+
+    // Parallel execution with await Promise.all
+    // and we wait until both are finished
+    Promise.all([
+      resizer1.generateThumbnail(file.path),
+      resizer2.generateArtwork(file.path)
+    ]).then(messages => {
+      req.photoFileName = messages[0];
+      // console.debug(`>photoFileName: ${req.photoFileName}`);
+      next();
+    });
   }
 };
 
