@@ -1,5 +1,11 @@
 const sharp = require("sharp");
 
+const THUMBNAIL_WIDTH = 200;
+const THUMBNAIL_HEIGHT = 200;
+const FORMAT_RATIO = 1.77;
+const ARTWORK_WIDTH = 1200;
+const ARTWORK_HEIGHT = Math.trunc(ARTWORK_WIDTH / FORMAT_RATIO);
+
 class Resize {
   constructor(destFolder) {
     this.destFolder = destFolder;
@@ -12,8 +18,8 @@ class Resize {
     await sharp(initialFilePath)
       .rotate() // auto-rotated using EXIF Orientation tag
       .resize({
-        width: 200,
-        height: 200,
+        width: THUMBNAIL_WIDTH,
+        height: THUMBNAIL_HEIGHT,
         fit: sharp.fit.cover // crop to cover both provided dimensions
       })
       .png()
@@ -26,12 +32,15 @@ class Resize {
     const resizedFileName = Resize.extractFileName(initialFilePath);
     const filePath = this.resizedFilePath(resizedFileName);
 
-    await sharp(initialFilePath)
-      .rotate() // auto-rotated using EXIF Orientation tag
+    const image = sharp(initialFilePath).rotate(); // auto-rotated using EXIF Orientation tag
+    const metadata = await image.metadata();
+    const isVertical = metadata.width > metadata.height ? false : true;
+
+    await image
       .resize({
-        width: 800,
-        height: 800,
-        withoutEnlargement: true,
+        width: isVertical ? ARTWORK_HEIGHT : ARTWORK_WIDTH,
+        height: isVertical ? ARTWORK_WIDTH : ARTWORK_HEIGHT,
+        // withoutEnlargement: true,
         fit: sharp.fit.cover // crop to cover both provided dimensions
       })
       .png()
