@@ -85,7 +85,7 @@ const Artwork = class {
           country: req.body.country,
           location: {
             type: "Point",
-            coordinates: [data.lng, data.lat]
+            coordinates: [data.lat, data.lng]
           }
         });
 
@@ -214,7 +214,7 @@ const Artwork = class {
             $nearSphere: {
               $geometry: {
                 type: "Point",
-                coordinates: [data.lng, data.lat]
+                coordinates: [data.lat, data.lng]
               },
               $maxDistance: 10000
             }
