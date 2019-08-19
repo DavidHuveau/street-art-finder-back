@@ -1,10 +1,18 @@
 const ArtworkModel = require("../models/ArtworkModel");
 const convertAdressToGpsCoordonates = require("../tools/Coordonates");
 
+const START_POSITION = [49.257786, 4.031926];
+
 const Artwork = class {
   static getAll(req, res) {
     ArtworkModel.find({})
-      .then(data => res.send(data))
+      .then(data => {
+        const response = {
+          startPosition: START_POSITION,
+          artworks: [...data]
+        };
+        res.send(response);
+      })
       .catch(err => {
         res.status(500).send({
           message: err.message
@@ -22,7 +30,11 @@ const Artwork = class {
             message: "Data not found with id: " + id
           });
         }
-        res.send(data);
+        const response = {
+          startPosition: data[0].location.coordinates,
+          artworks: [...data]
+        };
+        res.send(response);
       })
       .catch(err => {
         // format: /^[0-9a-fA-F]{24}$/
@@ -31,6 +43,7 @@ const Artwork = class {
             message: "ObjectId failed for: " + id
           });
         }
+        // console.log(err);
         res.status(500).send({
           message: "Something wrong retrieving with id: " + id
         });
@@ -92,9 +105,14 @@ const Artwork = class {
         artwork
           .save()
           .then(data => {
-            res.status(201).send(data);
+            const response = {
+              startPosition: data.location.coordinates,
+              artworks: [data]
+            };
+            res.status(201).send(response);
           })
           .catch(err => {
+            // console.log(err);
             res.status(500).send({
               message: "Something wrong creating"
             });
@@ -125,7 +143,7 @@ const Artwork = class {
         zipCode: req.body.zipCode,
         city: req.body.city,
         description: req.body.description,
-        // photoFileName: req.body.photoFileName,
+        photoFileName: req.body.photoFileName,
         isActivated: req.body.isActivated,
         isPublished: req.body.isPublished,
         country: req.body.country,
@@ -140,9 +158,14 @@ const Artwork = class {
             message: "Data not found with id: " + id
           });
         }
-        res.send(data);
+        const response = {
+          startPosition: data.location.coordinates,
+          artworks: [data]
+        };
+        res.send(response);
       })
       .catch(err => {
+        console.log(err);
         // format: /^[0-9a-fA-F]{24}$/
         if (err.kind === "ObjectId") {
           return res.status(422).send({
@@ -207,14 +230,16 @@ const Artwork = class {
       }
     }
 
+    let gpsCoordonates = [];
     convertAdressToGpsCoordonates(queryCountryCode, queryString)
       .then(data => {
+        gpsCoordonates = [data.lat, data.lng];
         ArtworkModel.find({
           location: {
             $nearSphere: {
               $geometry: {
                 type: "Point",
-                coordinates: [data.lat, data.lng]
+                coordinates: gpsCoordonates
               },
               $maxDistance: 10000
             }
@@ -226,7 +251,11 @@ const Artwork = class {
                 message: "Coordonates not found"
               });
             }
-            res.send(data);
+            const response = {
+              startPosition: gpsCoordonates,
+              artworks: [...data]
+            };
+            res.send(response);
           })
           .catch(err => {
             res.status(500).send({
@@ -241,36 +270,36 @@ const Artwork = class {
       });
   }
 
-  static search(req, res) {
-    let query = {};
-    if (req.query.city) query.city = req.query.city;
-    if (req.query.zipCode) query.zipCode = req.query.zipCode;
-    if (req.query.adressStreet)
-      query.adressStreet = { $regex: req.query.adressStreet, $options: "i" };
+  // static search(req, res) {
+  //   let query = {};
+  //   if (req.query.city) query.city = req.query.city;
+  //   if (req.query.zipCode) query.zipCode = req.query.zipCode;
+  //   if (req.query.adressStreet)
+  //     query.adressStreet = { $regex: req.query.adressStreet, $options: "i" };
 
-    if (!Object.keys(query).length) {
-      return res.status(400).send({
-        message:
-          "queries parameters (city/zipCode/adressStreet) not defined: " +
-          JSON.stringify(req.query)
-      });
-    }
+  //   if (!Object.keys(query).length) {
+  //     return res.status(400).send({
+  //       message:
+  //         "queries parameters (city/zipCode/adressStreet) not defined: " +
+  //         JSON.stringify(req.query)
+  //     });
+  //   }
 
-    ArtworkModel.find(query)
-      .then(data => {
-        if (!data) {
-          return res.status(404).send({
-            message: "Data not found"
-          });
-        }
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Something wrong searching"
-        });
-      });
-  }
+  //   ArtworkModel.find(query)
+  //     .then(data => {
+  //       if (!data) {
+  //         return res.status(404).send({
+  //           message: "Data not found"
+  //         });
+  //       }
+  //       res.send(data);
+  //     })
+  //     .catch(err => {
+  //       res.status(500).send({
+  //         message: "Something wrong searching"
+  //       });
+  //     });
+  // }
 };
 
 module.exports = Artwork;

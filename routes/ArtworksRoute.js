@@ -8,7 +8,7 @@ router
   .route("/")
   .get(ArtworkController.getAll)
   .post(upload.single("myFile"), resize, ArtworkController.create);
-router.route("/search").get(ArtworkController.search);
+// router.route("/search").get(ArtworkController.search);
 router.route("/searchByCity").get(ArtworkController.searchByCity);
 router
   .route("/:id")
