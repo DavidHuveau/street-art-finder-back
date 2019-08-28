@@ -254,6 +254,8 @@ const Artwork = class {
       .then(data => {
         gpsCoordonates = [data.lat, data.lng];
         ArtworkModel.find({
+          isPublished: true,
+          isActivated: true,
           location: {
             $nearSphere: {
               $geometry: {
