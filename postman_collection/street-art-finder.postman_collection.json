@@ -1,15 +1,7 @@
 {
-	"owner": "5425555",
-	"lastUpdatedBy": "5425555",
-	"lastRevision": 8408598166,
-	"team": null,
 	"id": "437028f1-9067-cfd7-1f36-5941edbfa790",
 	"name": "street-art-finder",
 	"description": "",
-	"variables": null,
-	"auth": null,
-	"events": null,
-	"folders_order": [],
 	"order": [
 		"cb6f39f2-c776-0072-19e0-5c8485fac66a",
 		"239794da-0429-0583-355b-7e20ee510fbc",
@@ -18,10 +10,17 @@
 		"4311e498-7f68-5af0-a825-9b097fb91638",
 		"c05aac40-45e0-c1d4-efa2-ca4d65d2b79b",
 		"5839d484-9f37-88f9-2a7a-9a81151aaa58",
-		"f9499ea0-2ae2-ea87-c783-24eaf5d3165c"
+		"f9499ea0-2ae2-ea87-c783-24eaf5d3165c",
+		"cee88f18-3c3b-5dc1-7d59-5c2faa026c3a",
+		"5240b37a-dcc5-c7ee-e65e-b1aa8a16ec46",
+		"f3d24a55-deb0-bce6-9e30-14865ace0b8e",
+		"88423b91-5c68-fdb2-720c-98edc371ccdb"
 	],
 	"folders": [],
-	"hasRequests": true,
+	"folders_order": [],
+	"timestamp": 0,
+	"owner": "5425555",
+	"public": false,
 	"requests": [
 		{
 			"folder": null,
@@ -74,6 +73,34 @@
 			"pathVariableData": [],
 			"responses": [],
 			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790"
+		},
+		{
+			"id": "5240b37a-dcc5-c7ee-e65e-b1aa8a16ec46",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/v1/proposals/noPublish/5d63a5e83dee164bcf652565",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1567027683799,
+			"name": "proposals-noPublish",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"responses": []
 		},
 		{
 			"folder": null,
@@ -137,6 +164,34 @@
 			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790"
 		},
 		{
+			"id": "88423b91-5c68-fdb2-720c-98edc371ccdb",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/v1/proposals/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1567027473284,
+			"name": "proposals-GET_ALL",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"responses": []
+		},
+		{
 			"folder": null,
 			"id": "c05aac40-45e0-c1d4-efa2-ca4d65d2b79b",
 			"name": "countries-GET_ALL",
@@ -175,28 +230,28 @@
 			"data": [
 				{
 					"key": "userName",
-					"value": "poulet21",
+					"value": "Lisa",
 					"type": "text",
 					"enabled": true,
 					"description": ""
 				},
 				{
 					"key": "adressStreet",
-					"value": "31 Boulevard Paul Doumer",
+					"value": "12 Avenue Brébant",
 					"type": "text",
 					"enabled": true,
 					"description": ""
 				},
 				{
 					"key": "zipCode",
-					"value": "51500",
+					"value": "51100",
 					"type": "text",
 					"enabled": true,
 					"description": ""
 				},
 				{
 					"key": "city",
-					"value": "Taissy",
+					"value": "Reims",
 					"type": "text",
 					"enabled": true,
 					"description": ""
@@ -224,7 +279,7 @@
 				},
 				{
 					"key": "myFile",
-					"value": "14721746_555343351330448_7869518842761509528_n.jpg",
+					"value": "street-art-portrait-par-christian-guemy-manchester-uk-jar737.jpg",
 					"description": "",
 					"type": "file",
 					"enabled": true
@@ -234,7 +289,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1566207640299,
+			"time": 1566223253319,
 			"name": "artworks-POST",
 			"description": null,
 			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
@@ -269,6 +324,99 @@
 			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
 			"responses": [],
 			"rawModeData": "{\n\t\"userName\": \"David\",\n\t\"adressStreet\":\"26 bis boulevard Pasteur   \",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"isPublished\": true,\n\t\"isActivated\": true,\n\t\"country\": \"5c87d82de78b4e40b133c51a\",\n\t\"photoFileName\": \"f5f3d342322fc50346386edaa31b6c8f.png\",\n\t\"location\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [\n\t\t\t49.1653,\n\t\t\t4.0258\n\t\t]\n\t}\n}"
+		},
+		{
+			"id": "cee88f18-3c3b-5dc1-7d59-5c2faa026c3a",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/v1/auth/signup",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "login",
+					"value": "toto",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1567023258833,
+			"name": "auth-signup",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"responses": []
+		},
+		{
+			"id": "f3d24a55-deb0-bce6-9e30-14865ace0b8e",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/v1/auth/signin",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "login",
+					"value": "toto",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1567027194373,
+			"name": "auth-signin",
+			"description": "",
+			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
+			"responses": []
 		},
 		{
 			"folder": null,
