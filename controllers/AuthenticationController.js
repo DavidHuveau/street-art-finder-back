@@ -3,15 +3,13 @@ const bcrypt = require("bcrypt");
 
 const User = class {
   static createUser(req, res) {
-    const { login, password } = req.body;
-    // console.log(login, password);
-
     if (!Object.keys(req.body).length) {
       return res.status(400).send({
         message: "Data content can not be empty"
       });
     } else {
       const { login, password } = req.body;
+      // console.log(login, password);
 
       if (!login || !password) {
         return res.status(400).send({

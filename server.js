@@ -5,6 +5,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+const passport = require("passport");
+require("./passport");
+
 require("dotenv").config();
 const SERVER_PORT = process.env.SERVER_PORT;
 const ROOT_API = process.env.ROOT_API;
