@@ -1,8 +1,8 @@
-const CountryModel = require("../models/CountryModel");
+const UserModel = require("../models/UserModel");
 
-const Country = class {
+const User = class {
   static getAll(req, res) {
-    CountryModel.find({})
+    UserModel.find({})
       .then(data => res.send(data))
       .catch(err => {
         res.status(500).send({
@@ -12,4 +12,4 @@ const Country = class {
   }
 };
 
-module.exports = Country;
+module.exports = User;

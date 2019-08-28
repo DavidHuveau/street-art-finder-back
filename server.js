@@ -33,6 +33,7 @@ app.use(`${ROOT_API}/artworks`, require("./routes/ArtworksRoute"));
 app.use(`${ROOT_API}/countries`, require("./routes/CountriesRoute"));
 app.use(`${ROOT_API}/public`, express.static("public"));
 app.use(`${ROOT_API}/proposals`, require("./routes/ProposalsRoute"));
+app.use(`${ROOT_API}/auth`, require("./routes/AuthenticationRoute"));
 app.use((req, res) => {
   res.status(404).send("Sorry cant find that!");
 });
