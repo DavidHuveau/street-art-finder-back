@@ -1,14 +1,14 @@
 const ArtworkModel = require("../models/ArtworkModel");
 const convertAdressToGpsCoordonates = require("../tools/Coordonates");
 
-const START_POSITION = [49.257786, 4.031926];
+// const START_POSITION = [49.257786, 4.031926];
 
 const Artwork = class {
   static getAll(req, res) {
     ArtworkModel.find({})
       .then(data => {
         const response = {
-          startPosition: START_POSITION,
+          // startPosition: START_POSITION,
           artworks: [...data]
         };
         res.send(response);
@@ -31,7 +31,7 @@ const Artwork = class {
           });
         }
         const response = {
-          startPosition: data[0].location.coordinates,
+          // startPosition: data[0].location.coordinates,
           artworks: [...data]
         };
         res.send(response);
@@ -46,6 +46,25 @@ const Artwork = class {
         // console.log(err);
         res.status(500).send({
           message: "Something wrong retrieving with id: " + id
+        });
+      });
+  }
+
+  static getPoposals(req, res) {
+    let query = {};
+    query.isPublished = false;
+
+    ArtworkModel.find(query)
+      .then(data => {
+        const response = {
+          // startPosition: START_POSITION,
+          artworks: [...data]
+        };
+        res.send(response);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: err.message
         });
       });
   }
@@ -106,7 +125,7 @@ const Artwork = class {
           .save()
           .then(data => {
             const response = {
-              startPosition: data.location.coordinates,
+              // startPosition: data.location.coordinates,
               artworks: [data]
             };
             res.status(201).send(response);
@@ -126,88 +145,88 @@ const Artwork = class {
   }
 
   // TODO: populate with the middleware for findByIdAndUpdate
-  static update(req, res) {
-    if (!Object.keys(req.body).length) {
-      return res.status(400).send({
-        message: "Data content can not be empty"
-      });
-    }
+  // static update(req, res) {
+  //   if (!Object.keys(req.body).length) {
+  //     return res.status(400).send({
+  //       message: "Data content can not be empty"
+  //     });
+  //   }
 
-    const { id } = req.params;
+  //   const { id } = req.params;
 
-    ArtworkModel.findByIdAndUpdate(
-      id,
-      {
-        userName: req.body.userName,
-        adressStreet: req.body.adressStreet,
-        zipCode: req.body.zipCode,
-        city: req.body.city,
-        description: req.body.description,
-        photoFileName: req.body.photoFileName,
-        isActivated: req.body.isActivated,
-        isPublished: req.body.isPublished,
-        country: req.body.country,
-        location: req.body.location
-      },
-      { new: true }
-    )
-      .populate("country", "name")
-      .then(data => {
-        if (!data) {
-          return res.status(404).send({
-            message: "Data not found with id: " + id
-          });
-        }
-        const response = {
-          startPosition: data.location.coordinates,
-          artworks: [data]
-        };
-        res.send(response);
-      })
-      .catch(err => {
-        console.log(err);
-        // format: /^[0-9a-fA-F]{24}$/
-        if (err.kind === "ObjectId") {
-          return res.status(422).send({
-            message: "ObjectId failed for: " + id
-          });
-        }
-        res.status(500).send({
-          message: "Something wrong updating with id: " + id
-        });
-      });
-  }
+  //   ArtworkModel.findByIdAndUpdate(
+  //     id,
+  //     {
+  //       userName: req.body.userName,
+  //       adressStreet: req.body.adressStreet,
+  //       zipCode: req.body.zipCode,
+  //       city: req.body.city,
+  //       description: req.body.description,
+  //       photoFileName: req.body.photoFileName,
+  //       isActivated: req.body.isActivated,
+  //       isPublished: req.body.isPublished,
+  //       country: req.body.country,
+  //       location: req.body.location
+  //     },
+  //     { new: true }
+  //   )
+  //     .populate("country", "name")
+  //     .then(data => {
+  //       if (!data) {
+  //         return res.status(404).send({
+  //           message: "Data not found with id: " + id
+  //         });
+  //       }
+  //       const response = {
+  //         // startPosition: data.location.coordinates,
+  //         artworks: [data]
+  //       };
+  //       res.send(response);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       // format: /^[0-9a-fA-F]{24}$/
+  //       if (err.kind === "ObjectId") {
+  //         return res.status(422).send({
+  //           message: "ObjectId failed for: " + id
+  //         });
+  //       }
+  //       res.status(500).send({
+  //         message: "Something wrong updating with id: " + id
+  //       });
+  //     });
+  // }
 
-  static delete(req, res) {
-    const id = req.params.id;
+  // static delete(req, res) {
+  //   const id = req.params.id;
 
-    ArtworkModel.findByIdAndUpdate(
-      id,
-      {
-        isActivated: false
-      },
-      { new: true }
-    )
-      .then(data => {
-        if (!data) {
-          return res.status(404).send({
-            message: "Data not found with id: " + id
-          });
-        }
-        res.status(204).send();
-      })
-      .catch(err => {
-        // format: /^[0-9a-fA-F]{24}$/
-        if (err.kind === "ObjectId") {
-          return res.status(422).send({
-            message: "ObjectId failed for: " + id
-          });
-        }
-        res.status(500).send({
-          message: "Something wrong  with id: " + id
-        });
-      });
-  }
+  //   ArtworkModel.findByIdAndUpdate(
+  //     id,
+  //     {
+  //       isActivated: false
+  //     },
+  //     { new: true }
+  //   )
+  //     .then(data => {
+  //       if (!data) {
+  //         return res.status(404).send({
+  //           message: "Data not found with id: " + id
+  //         });
+  //       }
+  //       res.status(204).send();
+  //     })
+  //     .catch(err => {
+  //       // format: /^[0-9a-fA-F]{24}$/
+  //       if (err.kind === "ObjectId") {
+  //         return res.status(422).send({
+  //           message: "ObjectId failed for: " + id
+  //         });
+  //       }
+  //       res.status(500).send({
+  //         message: "Something wrong  with id: " + id
+  //       });
+  //     });
+  // }
 
   // TODO: add an optional parameter for precision search (maxDistance)
   static searchByCity(req, res) {
@@ -300,6 +319,37 @@ const Artwork = class {
   //       });
   //     });
   // }
+
+  static updatePublished(req, res, isPublished) {
+    const id = req.params.id;
+
+    ArtworkModel.findByIdAndUpdate(
+      id,
+      {
+        isPublished: isPublished
+      },
+      { new: true }
+    )
+      .then(data => {
+        if (!data) {
+          return res.status(404).send({
+            message: "Data not found with id: " + id
+          });
+        }
+        res.status(204).send();
+      })
+      .catch(err => {
+        // format: /^[0-9a-fA-F]{24}$/
+        if (err.kind === "ObjectId") {
+          return res.status(422).send({
+            message: "ObjectId failed for: " + id
+          });
+        }
+        res.status(500).send({
+          message: "Something wrong  with id: " + id
+        });
+      });
+  }
 };
 
 module.exports = Artwork;

@@ -43,7 +43,7 @@ const artworkSchema = new Schema(
     },
     isActivated: {
       type: Boolean,
-      default: true
+      default: false
     },
     isPublished: {
       type: Boolean,

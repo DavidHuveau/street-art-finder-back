@@ -10,10 +10,8 @@ router
   .post(upload.single("myFile"), resize, ArtworkController.create);
 // router.route("/search").get(ArtworkController.search);
 router.route("/searchByCity").get(ArtworkController.searchByCity);
-router
-  .route("/:id")
-  .get(ArtworkController.getById)
-  .put(ArtworkController.update)
-  .delete(ArtworkController.delete);
+router.route("/:id").get(ArtworkController.getById);
+// .put(ArtworkController.update)
+// .delete(ArtworkController.delete);
 
 module.exports = router;
