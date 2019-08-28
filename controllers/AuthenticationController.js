@@ -21,13 +21,14 @@ const User = class {
           login: login,
           password: hash
         });
+
         newUser
           .save()
           .then(data => {
             res.status(201).send(data);
           })
           .catch(err => {
-            console.log(err.code);
+            // console.log(err.code);
             if (err.code === 11000) {
               return res.status(422).send({
                 message: "Duplicate login: " + login
@@ -39,6 +40,10 @@ const User = class {
           });
       }
     }
+  }
+
+  static getUserForLocalStrategy(login) {
+    return UserModel.find({ login: login });
   }
 };
 

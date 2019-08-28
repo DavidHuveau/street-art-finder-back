@@ -1,10 +1,10 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
-
 const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
+const AuthenticationController = require("./controllers/AuthenticationController");
 
 const JWT_SIGN_SECRET = process.env.JWT_SIGN_SECRET;
 
@@ -16,24 +16,24 @@ passport.use(
       session: false
     },
     (login, password, cb) => {
-      console.log(">>>>>", login, password, JWT_SIGN_SECRET);
+      // console.log(">>>>>", login, password);
+      AuthenticationController.getUserForLocalStrategy(login)
+        .then(data => {
+          // console.log(user);
 
-      // const resultQuerySelect = `SELECT * FROM users WHERE email = ?;`;
-      // connection.query(resultQuerySelect, [email], (err, data) => {
-      //   // si une erreur est obtenue
-      //   if (err) return cb(err);
-      //   // console.log(data);
+          if (!data || !data.length)
+            return cb(null, false, { message: "Wrong login" });
 
-      //   // si les login/password ne sont pas bon
-      //   if (!data || !data.length)
-      //     return cb(null, false, { message: "Wrong email" });
+          if (!bcrypt.compareSync(password, data[0].password))
+            return cb(null, false, { message: "Wrong password" });
 
-      //   if (!bcrypt.compareSync(password, data[0].password))
-      //     return cb(null, false, { message: "Wrong password" });
-
-      //   // si l'utilisateur est ok on retourne l'objet user
-      //   return cb(null, data[0]);
-      // });
+          // if the user is ok we return the user object
+          return cb(null, data[0]);
+        })
+        .catch(err => {
+          // console.log(err);
+          if (err) return cb(err);
+        });
     }
   )
 );
