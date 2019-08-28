@@ -52,6 +52,7 @@ const Artwork = class {
 
   static getPoposals(req, res) {
     let query = {};
+    query.isActivated = true;
     query.isPublished = false;
 
     ArtworkModel.find(query)
@@ -322,13 +323,14 @@ const Artwork = class {
   //     });
   // }
 
-  static updatePublished(req, res, isPublished) {
+  static updatePublished(req, res, isValidate) {
     const id = req.params.id;
 
     ArtworkModel.findByIdAndUpdate(
       id,
       {
-        isPublished: isPublished
+        isActivated: isValidate,
+        isPublished: isValidate
       },
       { new: true }
     )
