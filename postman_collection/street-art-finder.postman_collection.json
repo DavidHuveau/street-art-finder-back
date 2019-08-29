@@ -370,11 +370,11 @@
 		},
 		{
 			"id": "f3d24a55-deb0-bce6-9e30-14865ace0b8e",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/json\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
+					"value": "application/json",
 					"description": "",
 					"enabled": true
 				}
@@ -385,38 +385,17 @@
 			"pathVariables": {},
 			"pathVariableData": [],
 			"method": "POST",
-			"data": [
-				{
-					"key": "login",
-					"value": "toto",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "password",
-					"value": "1234",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": false
-				}
-			],
-			"dataMode": "urlencoded",
+			"data": [],
+			"dataMode": "raw",
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1567027194373,
+			"time": 1567087274256,
 			"name": "auth-signin",
 			"description": "",
 			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
-			"responses": []
+			"responses": [],
+			"rawModeData": "{\n\"login\": \"toto\",\n\"password\": \"1234\"\n}"
 		},
 		{
 			"folder": null,
