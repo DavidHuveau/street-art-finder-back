@@ -11,3 +11,6 @@ https://opencagedata.com/
 
 Node Express Image Upload And Resize Tutorial Example:
 https://appdividend.com/2019/02/14/node-express-image-upload-and-resize-tutorial-example/#Step_7_Resize_the_image
+
+Integrating MongoDB Atlas with Heroku Private Spaces:
+https://www.mongodb.com/blog/post/integrating-mongodb-atlas-with-heroku-private-spaces
