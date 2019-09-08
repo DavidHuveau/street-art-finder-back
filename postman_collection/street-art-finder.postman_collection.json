@@ -1,436 +1,396 @@
 {
-	"id": "437028f1-9067-cfd7-1f36-5941edbfa790",
-	"name": "street-art-finder",
-	"description": "",
-	"order": [
-		"cb6f39f2-c776-0072-19e0-5c8485fac66a",
-		"239794da-0429-0583-355b-7e20ee510fbc",
-		"5467b4a5-d2db-ec17-3564-c2b807c667ca",
-		"cb8c7f19-4bda-e299-909e-62d1bc5b1d1e",
-		"4311e498-7f68-5af0-a825-9b097fb91638",
-		"c05aac40-45e0-c1d4-efa2-ca4d65d2b79b",
-		"5839d484-9f37-88f9-2a7a-9a81151aaa58",
-		"f9499ea0-2ae2-ea87-c783-24eaf5d3165c",
-		"cee88f18-3c3b-5dc1-7d59-5c2faa026c3a",
-		"5240b37a-dcc5-c7ee-e65e-b1aa8a16ec46",
-		"f3d24a55-deb0-bce6-9e30-14865ace0b8e",
-		"88423b91-5c68-fdb2-720c-98edc371ccdb"
-	],
-	"folders": [],
-	"folders_order": [],
-	"timestamp": 0,
-	"owner": "5425555",
-	"public": false,
-	"requests": [
+	"info": {
+		"_postman_id": "437028f1-9067-cfd7-1f36-5941edbfa790",
+		"name": "street-art-finder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"folder": null,
-			"id": "239794da-0429-0583-355b-7e20ee510fbc",
-			"name": "artworks-GET_ALL",
-			"dataMode": "raw",
-			"data": [],
-			"auth": null,
-			"events": null,
-			"rawModeData": "",
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "",
-			"method": "GET",
-			"pathVariables": null,
-			"url": "http://localhost:8080/api/v1/artworks/",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [],
-			"headerData": [],
-			"pathVariableData": [],
-			"responses": [],
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790"
-		},
-		{
-			"folder": null,
-			"id": "4311e498-7f68-5af0-a825-9b097fb91638",
-			"name": "artworks-DELETE",
-			"dataMode": "raw",
-			"data": [],
-			"auth": null,
-			"events": null,
-			"rawModeData": "",
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "",
-			"method": "DELETE",
-			"pathVariables": null,
-			"url": "http://localhost:8080/api/v1/artworks/5c86170a238e7209550e03ee",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [],
-			"headerData": [],
-			"pathVariableData": [],
-			"responses": [],
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790"
-		},
-		{
-			"id": "5240b37a-dcc5-c7ee-e65e-b1aa8a16ec46",
-			"headers": "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/v1/proposals/noPublish/5d63a5e83dee164bcf652565",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "PUT",
-			"data": null,
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1567027683799,
-			"name": "proposals-noPublish",
-			"description": "",
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
-			"responses": []
-		},
-		{
-			"folder": null,
-			"id": "5467b4a5-d2db-ec17-3564-c2b807c667ca",
-			"name": "artworks-GET_BY_ID",
-			"dataMode": "raw",
-			"data": [],
-			"auth": null,
-			"events": null,
-			"rawModeData": "",
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/v1/artworks/5c91f3a319607009fa212852",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [],
-			"headerData": [],
-			"pathVariableData": [],
-			"responses": [],
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790"
-		},
-		{
-			"folder": null,
-			"id": "5839d484-9f37-88f9-2a7a-9a81151aaa58",
-			"name": "artwork-search",
-			"dataMode": "raw",
-			"data": [],
-			"auth": null,
-			"events": null,
-			"rawModeData": "",
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "",
-			"method": "GET",
-			"pathVariables": null,
-			"url": "http://localhost:8080/api/v1/artworks/search/?city=reims&countryCode=FR",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "city",
-					"value": "reims"
-				},
-				{
-					"key": "countryCode",
-					"value": "FR"
-				}
-			],
-			"headerData": [],
-			"pathVariableData": [],
-			"responses": [],
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790"
-		},
-		{
-			"id": "88423b91-5c68-fdb2-720c-98edc371ccdb",
-			"headers": "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/v1/proposals/",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1567027473284,
-			"name": "proposals-GET_ALL",
-			"description": "",
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
-			"responses": []
-		},
-		{
-			"folder": null,
-			"id": "c05aac40-45e0-c1d4-efa2-ca4d65d2b79b",
-			"name": "countries-GET_ALL",
-			"dataMode": "raw",
-			"data": [],
-			"auth": null,
-			"events": null,
-			"rawModeData": "",
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "",
-			"method": "GET",
-			"pathVariables": null,
-			"url": "http://localhost:8080/api/v1/countries",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [],
-			"headerData": [],
-			"pathVariableData": [],
-			"responses": [],
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790"
-		},
-		{
-			"id": "cb6f39f2-c776-0072-19e0-5c8485fac66a",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:8080/api/v1/artworks/",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [
-				{
-					"key": "userName",
-					"value": "Lisa",
-					"type": "text",
-					"enabled": true,
-					"description": ""
-				},
-				{
-					"key": "adressStreet",
-					"value": "12 Avenue Brébant",
-					"type": "text",
-					"enabled": true,
-					"description": ""
-				},
-				{
-					"key": "zipCode",
-					"value": "51100",
-					"type": "text",
-					"enabled": true,
-					"description": ""
-				},
-				{
-					"key": "city",
-					"value": "Reims",
-					"type": "text",
-					"enabled": true,
-					"description": ""
-				},
-				{
-					"key": "description",
-					"value": "description",
-					"type": "text",
-					"enabled": true,
-					"description": ""
-				},
-				{
-					"key": "country",
-					"value": "5c87d82de78b4e40b133c55b",
-					"type": "text",
-					"enabled": true,
-					"description": ""
-				},
-				{
-					"key": "countryCode",
-					"value": "FR",
-					"type": "text",
-					"enabled": true,
-					"description": ""
-				},
-				{
-					"key": "myFile",
-					"value": "street-art-portrait-par-christian-guemy-manchester-uk-jar737.jpg",
-					"description": "",
-					"type": "file",
-					"enabled": true
-				}
-			],
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1566223253319,
 			"name": "artworks-POST",
-			"description": null,
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
-			"responses": []
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userName",
+							"value": "Lisa",
+							"type": "text"
+						},
+						{
+							"key": "adressStreet",
+							"value": "12 Avenue Brébant",
+							"type": "text"
+						},
+						{
+							"key": "zipCode",
+							"value": "51100",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Reims",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "5c87d82de78b4e40b133c55b",
+							"type": "text"
+						},
+						{
+							"key": "countryCode",
+							"value": "FR",
+							"type": "text"
+						},
+						{
+							"key": "myFile",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						""
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "cb8c7f19-4bda-e299-909e-62d1bc5b1d1e",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
+			"name": "artworks-GET_ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						""
+					]
 				}
-			],
-			"url": "http://localhost:8080/api/v1/artworks/5d5aa3ba1d3f965ec2913f39",
-			"folder": null,
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "PUT",
-			"data": [],
-			"dataMode": "raw",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1566221384629,
+			},
+			"response": []
+		},
+		{
+			"name": "artworks-GET_BY_ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/5c91f3a319607009fa212852",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						"5c91f3a319607009fa212852"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "artworks-PUT",
-			"description": null,
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
-			"responses": [],
-			"rawModeData": "{\n\t\"userName\": \"David\",\n\t\"adressStreet\":\"26 bis boulevard Pasteur   \",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"isPublished\": true,\n\t\"isActivated\": true,\n\t\"country\": \"5c87d82de78b4e40b133c51a\",\n\t\"photoFileName\": \"f5f3d342322fc50346386edaa31b6c8f.png\",\n\t\"location\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [\n\t\t\t49.1653,\n\t\t\t4.0258\n\t\t]\n\t}\n}"
-		},
-		{
-			"id": "cee88f18-3c3b-5dc1-7d59-5c2faa026c3a",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/v1/auth/signup",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [
-				{
-					"key": "login",
-					"value": "toto",
-					"description": "",
-					"type": "text",
-					"enabled": true
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\": \"David\",\n\t\"adressStreet\":\"26 bis boulevard Pasteur   \",\n\t\"zipCode\": \"51100\",\n\t\"city\": \"Reims\",\n\t\"description\": \"description\",\n\t\"isPublished\": true,\n\t\"isActivated\": true,\n\t\"country\": \"5c87d82de78b4e40b133c51a\",\n\t\"photoFileName\": \"f5f3d342322fc50346386edaa31b6c8f.png\",\n\t\"location\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [\n\t\t\t49.1653,\n\t\t\t4.0258\n\t\t]\n\t}\n}"
 				},
-				{
-					"key": "password",
-					"value": "1234",
-					"description": "",
-					"type": "text",
-					"enabled": true
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/5d5aa3ba1d3f965ec2913f39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						"5d5aa3ba1d3f965ec2913f39"
+					]
 				}
-			],
-			"dataMode": "urlencoded",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1567023258833,
-			"name": "auth-signup",
-			"description": "",
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
-			"responses": []
+			},
+			"response": []
 		},
 		{
-			"id": "f3d24a55-deb0-bce6-9e30-14865ace0b8e",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
+			"name": "artworks-DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/5c86170a238e7209550e03ee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						"5c86170a238e7209550e03ee"
+					]
 				}
-			],
-			"url": "http://localhost:8080/api/v1/auth/signin",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1567087274256,
-			"name": "auth-signin",
-			"description": "",
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790",
-			"responses": [],
-			"rawModeData": "{\n\"login\": \"toto\",\n\"password\": \"1234\"\n}"
+			},
+			"response": []
 		},
 		{
-			"folder": null,
-			"id": "f9499ea0-2ae2-ea87-c783-24eaf5d3165c",
+			"name": "countries-GET_ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "artwork-search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/search/?city=reims&countryCode=FR",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "reims"
+						},
+						{
+							"key": "countryCode",
+							"value": "FR"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "artwork-searchByCity",
-			"dataMode": "raw",
-			"data": [],
-			"auth": null,
-			"events": null,
-			"rawModeData": "",
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "",
-			"method": "GET",
-			"pathVariables": null,
-			"url": "http://localhost:8080/api/v1/artworks/searchByCity/?city=reims&countryCode=FR",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "city",
-					"value": "reims"
-				},
-				{
-					"key": "countryCode",
-					"value": "FR"
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/artworks/searchByCity/?city=reims&countryCode=FR",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"artworks",
+						"searchByCity",
+						""
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "reims"
+						},
+						{
+							"key": "countryCode",
+							"value": "FR"
+						}
+					]
 				}
-			],
-			"headerData": [],
-			"pathVariableData": [],
-			"responses": [],
-			"collectionId": "437028f1-9067-cfd7-1f36-5941edbfa790"
+			},
+			"response": []
+		},
+		{
+			"name": "auth-signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "login",
+							"value": "toto",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "proposals-noPublish",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/proposals/noPublish/5d63a5e83dee164bcf652565",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"proposals",
+						"noPublish",
+						"5d63a5e83dee164bcf652565"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth-signin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"login\": \"\",\n\"password\": \"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "proposals-GET_ALL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.dG90bw.NTkZ-s28B52_cn-wHn7RFaPb0PZF-O37kEORLs_NHkM"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/proposals/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"proposals",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

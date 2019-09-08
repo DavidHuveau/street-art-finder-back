@@ -26,7 +26,7 @@ router
         data: req.user.login
       },
       JWT_SIGN_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: 60 * 10 }
     );
     return res.send({
       login: req.user.login,
