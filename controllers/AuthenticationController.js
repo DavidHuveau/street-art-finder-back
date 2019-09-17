@@ -43,7 +43,7 @@ const User = class {
   }
 
   static getUserForLocalStrategy(login) {
-    return UserModel.find({ login: login });
+    return UserModel.findOne({ login: login });
   }
 };
 

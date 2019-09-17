@@ -19,16 +19,15 @@ passport.use(
       // console.log(">>>>>", login, password);
       AuthenticationController.getUserForLocalStrategy(login)
         .then(data => {
-          // console.log(user);
-
-          if (!data || !data.length)
+          // console.log(">" + JSON.stringify(data));
+          if (!data)
             return cb(null, false, { message: "Wrong login" });
 
-          if (!bcrypt.compareSync(password, data[0].password))
+          if (!bcrypt.compareSync(password, data.password))
             return cb(null, false, { message: "Wrong password" });
 
           // if the user is ok we return the user object
-          return cb(null, data[0]);
+          return cb(null, data);
         })
         .catch(err => {
           // console.log(err);
