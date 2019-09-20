@@ -1,6 +1,8 @@
 const UserModel = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 
+const SALT_ROUNDS = 10;
+
 const User = class {
   static createUser(req, res) {
     if (!Object.keys(req.body).length) {
@@ -8,15 +10,16 @@ const User = class {
         message: "Data content can not be empty"
       });
     } else {
-      const { login, password } = req.body;
-      // console.log(login, password);
+      const { login, plaintextPassword } = req.body;
+      // console.log(login, plaintextPassword);
 
-      if (!login || !password) {
+      if (!login || !plaintextPassword) {
         return res.status(400).send({
           message: "Missing fields in the body: login or password"
         });
       } else {
-        const hash = bcrypt.hashSync(password, 10);
+        const salt = bcrypt.genSaltSync(SALT_ROUNDS);
+        const hash = bcrypt.hashSync(plaintextPassword, salt);
         const newUser = new UserModel({
           login: login,
           password: hash
