@@ -4,7 +4,7 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const mongoSanitize = require('express-mongo-sanitize');
 const passport = require("passport");
 require("./passport");
 
@@ -27,6 +27,9 @@ mongoose
     app.use(morgan("dev"));
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+    // sanitizes user-supplied data to prevent MongoDB Operator Injection
+    // Replace prohibited characters with _
+    app.use(mongoSanitize({ replaceWith: '_' }));
     app.use(`${ROOT_API}/artworks`, require("./routes/ArtworksRoute"));
     app.use(`${ROOT_API}/countries`, require("./routes/CountriesRoute"));
     app.use(`${ROOT_API}/public`, express.static("public"));

@@ -16,6 +16,7 @@ const JWT_SIGN_SECRET = process.env.JWT_SIGN_SECRET;
 router
   .route("/signin")
   .get((req, res) => {
+    console.log(">" + JSON.stringify(req.body.login));
     res.send("I am in GET signin");
   })
   .post(passport.authenticate("local", { session: false }), (req, res) => {
