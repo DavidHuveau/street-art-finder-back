@@ -18,5 +18,5 @@ https://scotch.io/@401/mongodb-injection-in-nodejs
 Integrating MongoDB Atlas with Heroku Private Spaces:
 https://www.mongodb.com/blog/post/integrating-mongodb-atlas-with-heroku-private-spaces
 
-Sanitization middlewares:
-https://express-validator.github.io/docs/filter-api.html
+Sanitization:
+https://dev.to/jam3/how-to-prevent-xss-attacks-when-using-dangerouslysetinnerhtml-in-react-1464

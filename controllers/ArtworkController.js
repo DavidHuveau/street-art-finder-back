@@ -1,5 +1,9 @@
 const ArtworkModel = require("../models/ArtworkModel");
 const convertAdressToGpsCoordonates = require("../tools/Coordonates");
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+const window = (new JSDOM('')).window;
+const DOMPurify = createDOMPurify(window);
 
 const Artwork = class {
   static getAll(req, res) {
@@ -89,7 +93,13 @@ const Artwork = class {
       });
     }
 
-    const { userName, city, zipCode, adressStreet, countryCode, description, country } = req.body;
+    const userName = DOMPurify.sanitize(req.body.userName);
+    const city = DOMPurify.sanitize(req.body.city);
+    const zipCode = DOMPurify.sanitize(req.body.zipCode);
+    const adressStreet = DOMPurify.sanitize(req.body.adressStreet);
+    const countryCode = DOMPurify.sanitize(req.body.countryCode);
+    const description = DOMPurify.sanitize(req.body.description);
+    const country = DOMPurify.sanitize(req.body.country);
     if (!city || !zipCode || !adressStreet || !countryCode) {
       return res.status(400).send({
         message:
