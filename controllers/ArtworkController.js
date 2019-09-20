@@ -1,14 +1,11 @@
 const ArtworkModel = require("../models/ArtworkModel");
 const convertAdressToGpsCoordonates = require("../tools/Coordonates");
 
-// const START_POSITION = [49.257786, 4.031926];
-
 const Artwork = class {
   static getAll(req, res) {
     ArtworkModel.find({})
       .then(data => {
         const response = {
-          // startPosition: START_POSITION,
           artworks: [...data]
         };
         res.send(response);
@@ -31,7 +28,6 @@ const Artwork = class {
           });
         }
         const response = {
-          // startPosition: data[0].location.coordinates,
           artworks: [...data]
         };
         res.send(response);
@@ -58,7 +54,6 @@ const Artwork = class {
     ArtworkModel.find(query)
       .then(data => {
         const response = {
-          // startPosition: START_POSITION,
           artworks: [...data]
         };
         res.send(response);
@@ -76,46 +71,44 @@ const Artwork = class {
     // console.debug(file);
     // console.debug(`>photoFileName : ${photoFileName}`);
 
-    if (req.fileValidationError)
+    if (req.fileValidationError) {
       return res.status(400).send({
         message: req.fileValidationError
       });
-    else if (!file)
+    }
+
+    if (!file) {
       return res.status(400).send({
         message: "Please provide an image"
       });
-
-    let queryString = "";
-    let queryCountryCode = "";
+    }
 
     if (!Object.keys(req.body).length) {
       return res.status(400).send({
         message: "Data content can not be empty"
       });
-    } else {
-      const { city, zipCode, adressStreet, countryCode } = req.body;
-
-      if (!city || !zipCode || !adressStreet || !countryCode) {
-        return res.status(400).send({
-          message:
-            "Missing fields in the body: city or zipCode or adressStreet or countryCode"
-        });
-      } else {
-        queryString = `${adressStreet}, ${zipCode}, ${city}`;
-        queryCountryCode = countryCode;
-      }
     }
 
+    const { userName, city, zipCode, adressStreet, countryCode, description, country } = req.body;
+    if (!city || !zipCode || !adressStreet || !countryCode) {
+      return res.status(400).send({
+        message:
+        "Missing fields in the body: city or zipCode or adressStreet or countryCode"
+      });
+    }
+
+    const queryString = `${adressStreet}, ${zipCode}, ${city}`;
+    const queryCountryCode = countryCode;
     convertAdressToGpsCoordonates(queryCountryCode, queryString)
       .then(data => {
         const artwork = new ArtworkModel({
-          userName: req.body.userName,
-          adressStreet: req.body.adressStreet,
-          zipCode: req.body.zipCode,
-          city: req.body.city,
-          description: req.body.description,
+          userName: userName,
+          adressStreet: adressStreet,
+          zipCode: zipCode,
+          city: city,
+          description: description,
           photoFileName: photoFileName,
-          country: req.body.country,
+          country: country,
           location: {
             type: "Point",
             coordinates: [data.lat, data.lng]
@@ -126,7 +119,6 @@ const Artwork = class {
           .save()
           .then(data => {
             const response = {
-              // startPosition: data.location.coordinates,
               artworks: [data]
             };
             res.status(201).send(response);
@@ -179,7 +171,6 @@ const Artwork = class {
   //         });
   //       }
   //       const response = {
-  //         // startPosition: data.location.coordinates,
   //         artworks: [data]
   //       };
   //       res.send(response);
@@ -231,25 +222,21 @@ const Artwork = class {
 
   // TODO: add an optional parameter for precision search (maxDistance)
   static searchByCity(req, res) {
-    let queryString = "";
-    let queryCountryCode = "";
-
     if (!Object.keys(req.query).length) {
       return res.status(400).send({
         message: "query string can not be empty"
       });
-    } else {
-      const { city, countryCode } = req.query;
-      if (!city || !countryCode) {
-        return res.status(400).send({
-          message: "Missing fields in the query: city or countryCode"
-        });
-      } else {
-        queryString = city;
-        queryCountryCode = countryCode;
-      }
     }
 
+    const { city, countryCode } = req.query;
+    if (!city || !countryCode) {
+      return res.status(400).send({
+        message: "Missing fields in the query: city or countryCode"
+      });
+    }
+
+    const queryString = city;
+    const queryCountryCode = countryCode;
     let gpsCoordonates = [];
     convertAdressToGpsCoordonates(queryCountryCode, queryString)
       .then(data => {
