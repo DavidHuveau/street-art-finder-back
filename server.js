@@ -20,35 +20,35 @@ mongoose
   .connect(databaseConfig.CONNECT_STRING_FULL, { useNewUrlParser: true })
   .then(() => {
     console.log("Successfully connected to the database");
+
+    const app = express();
+    app.disable('x-powered-by');
+    app.use(cors());
+    app.use(morgan("dev"));
+    app.use(bodyParser.json()); // for parsing application/json
+    app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+    app.use(`${ROOT_API}/artworks`, require("./routes/ArtworksRoute"));
+    app.use(`${ROOT_API}/countries`, require("./routes/CountriesRoute"));
+    app.use(`${ROOT_API}/public`, express.static("public"));
+    app.use(
+      `${ROOT_API}/proposals`,
+      passport.authenticate("jwt", { session: false }),
+      require("./routes/ProposalsRoute")
+    );
+    app.use(`${ROOT_API}/auth`, require("./routes/AuthenticationRoute"));
+    app.use((req, res) => {
+      res.status(404).send("Sorry cant find that!");
+    });
+
+    app.listen(SERVER_PORT, err => {
+      if (err) {
+        throw new Error("Something bad happened...");
+      }
+      console.log(`web server listening on port ${SERVER_PORT}`);
+    });
   })
   .catch(err => {
     console.log("Could not connect to the database. Exiting now...", err);
     process.exit();
   });
 
-const app = express();
-
-app.disable('x-powered-by');
-app.use(cors());
-app.use(morgan("dev"));
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(`${ROOT_API}/artworks`, require("./routes/ArtworksRoute"));
-app.use(`${ROOT_API}/countries`, require("./routes/CountriesRoute"));
-app.use(`${ROOT_API}/public`, express.static("public"));
-app.use(
-  `${ROOT_API}/proposals`,
-  passport.authenticate("jwt", { session: false }),
-  require("./routes/ProposalsRoute")
-);
-app.use(`${ROOT_API}/auth`, require("./routes/AuthenticationRoute"));
-app.use((req, res) => {
-  res.status(404).send("Sorry cant find that!");
-});
-
-app.listen(SERVER_PORT, err => {
-  if (err) {
-    throw new Error("Something bad happened...");
-  }
-  console.log(`web server listening on port ${SERVER_PORT}`);
-});
