@@ -1,6 +1,13 @@
 require('dotenv').config();
 
 module.exports = {
-  CONNECT_STRING_FULL: process.env.MONGODB_CONNECT_STRING_WITHOUT_PWD.replace(
-    '<password>', process.env.MONGODB_PASSWORD)
-}
+  development: {
+    url: process.env.MONGODB_URL_DEV
+  },
+  test: {
+    url: process.env.MONGODB_URL_TEST
+  },
+  production: {
+    url: process.env.MONGODB_URL_PROD
+  }
+};

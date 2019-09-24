@@ -11,13 +11,15 @@ require("./passport");
 require("dotenv").config();
 const SERVER_PORT = process.env.SERVER_PORT;
 const ROOT_API = process.env.ROOT_API;
+const ENV = process.env.NODE_ENV || 'development';
+const CONFIG = databaseConfig[ENV];
 
 // specifies that the promises will be promises "full js" and not via bluebird
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
 mongoose
-  .connect(databaseConfig.CONNECT_STRING_FULL, { useNewUrlParser: true })
+  .connect(CONFIG.url, { useNewUrlParser: true })
   .then(() => {
     console.log("Successfully connected to the database");
 
