@@ -23,3 +23,5 @@ https://dev.to/jam3/how-to-prevent-xss-attacks-when-using-dangerouslysetinnerhtm
 
 Testing NodeJs/Express API with Jest and Supertest:
 https://dev.to/nedsoft/testing-nodejs-express-api-with-jest-and-supertest-1km6
+https://zellwk.com/blog/endpoint-testing/
+

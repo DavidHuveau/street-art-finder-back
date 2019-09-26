@@ -1,5 +1,6 @@
-const request = require("supertest");
+const supertest = require("supertest");
 const app = require("../app"); // our Node application
+const request = supertest(app);
 const FormData = require('form-data');
 
 describe("Artworks endpoints", () => {
@@ -8,15 +9,15 @@ describe("Artworks endpoints", () => {
     done();
   });
 
-  xit("should get all artworks", async done => {
-    const response = await request(app)
+  it("should get all artworks", async done => {
+    const response = await request
       .get("/api/v1/artworks/");
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("artworks");
     done();
   });
 
-  xit("should post a proposal that will fail", async done => {
+  it("should post a proposal that will fail", async done => {
     const formData = new FormData();
     formData.append("userName", "userName");
     formData.append("adressStreet", "adressStreet");
@@ -26,9 +27,7 @@ describe("Artworks endpoints", () => {
     formData.append("country", "country");
     formData.append("countryCode", "countryCode");
 
-    // form.append('my_logo', request('http://nodejs.org/images/logo.png'));
-
-    const response = await request(app)
+    const response = await request
       .post("/api/v1/artworks/")
       .send({
         formData
@@ -49,7 +48,7 @@ describe("Artworks endpoints", () => {
     formData.append("countryCode", "countryCode");
     // formData.append('my_logo', request('http://nodejs.org/images/logo.png'));
 
-    const response = await request(app)
+    const response = await request
       .post("/api/v1/artworks/")
       .send({
         formData
