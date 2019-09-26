@@ -1,8 +1,18 @@
 const supertest = require("supertest");
 const app = require("../app"); // our Node application
 const request = supertest(app);
+const mongoose = require('mongoose')
 
 describe("Artworks endpoints", () => {
+
+  beforeAll(async () => {
+    
+  });
+
+  afterAll(async () => {
+    await mongoose.connection.close()
+  })
+
   it("should see if Jest works", async done => {
     expect(1).toBe(1);
     done();
@@ -31,7 +41,7 @@ describe("Artworks endpoints", () => {
     done();
   });
 
-  it("should post a proposal", async () => {
+  xit("should post a proposal", async () => {
     const response = await request
       .post("/api/v1/artworks/")
       .field("userName", "Lisa")
