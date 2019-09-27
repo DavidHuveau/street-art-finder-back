@@ -6,6 +6,7 @@ const ENV = process.env.NODE_ENV || "development";
 const config = databaseConfig[ENV];
 
 module.exports = {
+  mongoose,
   connect: () => {
     // specifies that the promises will be promises "full js" and not via bluebird
     mongoose.Promise = global.Promise;

@@ -2,10 +2,13 @@ const supertest = require("supertest");
 const app = require("../app"); // our Node application
 const request = supertest(app);
 const database = require("../models/Database");
+// const ArtworkModel = require("../models/ArtworkModel");
 
 describe("Artworks endpoints", () => {
-  beforeAll(async () => {
+  beforeAll(async done => {
     await database.connect();
+    await database.mongoose.connection.collections['artworks'].drop();
+    done();
   });
 
   afterAll(async done => {
@@ -40,7 +43,7 @@ describe("Artworks endpoints", () => {
     done();
   });
 
-  it("should post a proposal", async () => {
+  it("should post a proposal", async done => {
     let response = await request
       .post("/api/v1/artworks/")
       .field("userName", "Lisa")
@@ -57,11 +60,10 @@ describe("Artworks endpoints", () => {
     expect(response.body.artworks[0]).toHaveProperty("_id");
     expect(response.body.artworks[0]).toHaveProperty("city");
 
-    // response = await request.get("/api/v1/artworks/");
-    // expect(response.status).toBe(200);
-    // console.log(response.body);
-    // expect(response.body).toHaveProperty("artworks");
-    // expect(response.body.artworks.length).toBe(1);
+    response = await request.get("/api/v1/artworks/");
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("artworks");
+    expect(response.body.artworks.length).toBe(1);
     done();
   });
 
