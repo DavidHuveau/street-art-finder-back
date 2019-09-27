@@ -1,16 +1,15 @@
 const supertest = require("supertest");
 const app = require("../app"); // our Node application
 const request = supertest(app);
-const mongoose = require('mongoose')
+const mongoDB = require("../models/mongoDB");
 
 describe("Artworks endpoints", () => {
-
   beforeAll(async () => {
-    
+    await mongoDB.connect();
   });
 
-  afterAll(async () => {
-    await mongoose.connection.close()
+  afterAll(async done => {
+    await mongoDB.disconnect(done);
   })
 
   it("should see if Jest works", async done => {
