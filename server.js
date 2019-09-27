@@ -1,11 +1,16 @@
 const app = require('./app');
-const mongoDB = require("./models/mongoDB");
+const database = require("./models/Database");
 
 require("dotenv").config();
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
-// Connecting to the database
-mongoDB.connect();
+database.connect()
+  .then(() => {
+    console.log("Successfully connected to the database");
+  })
+  .catch(err => {
+    console.log("Could not connect to the database. Exiting now...", err);
+  });
 
 app.listen(SERVER_PORT, err => {
   if (err) {

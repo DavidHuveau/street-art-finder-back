@@ -9,15 +9,9 @@ module.exports = {
   connect: () => {
     // specifies that the promises will be promises "full js" and not via bluebird
     mongoose.Promise = global.Promise;
-    mongoose
-      .connect(config.url, { useNewUrlParser: true })
-      .then(() => {
-        console.log("Successfully connected to the database");
-      })
-      .catch(err => {
-        console.log("Could not connect to the database. Exiting now...", err);
-        process.exit();
-      });
+    return mongoose.connect(config.url, {
+      useNewUrlParser: true
+    });
   },
   disconnect: done => {
     mongoose.disconnect(done);
