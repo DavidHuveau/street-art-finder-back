@@ -10,18 +10,18 @@ describe("Artworks endpoints", () => {
 
   afterAll(async done => {
     await database.disconnect(done);
-  })
+  });
 
   it("should see if Jest works", async done => {
     expect(1).toBe(1);
     done();
   });
 
-  it("should get all artworks", async done => {
-    const response = await request
-      .get("/api/v1/artworks/");
+  it("should get 0 artworks", async done => {
+    const response = await request.get("/api/v1/artworks/");
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("artworks");
+    expect(response.body.artworks.length).toBe(0);
     done();
   });
 
@@ -36,12 +36,12 @@ describe("Artworks endpoints", () => {
       .field("country", "country")
       .field("countryCode", "countryCode");
     expect(response.status).toBe(400);
-    expect(response.body).toMatchObject({message: 'Please provide an image'})
+    expect(response.body).toMatchObject({ message: "Please provide an image" });
     done();
   });
 
-  xit("should post a proposal", async () => {
-    const response = await request
+  it("should post a proposal", async () => {
+    let response = await request
       .post("/api/v1/artworks/")
       .field("userName", "Lisa")
       .field("adressStreet", "26 bis boulevard Pasteur")
@@ -50,9 +50,19 @@ describe("Artworks endpoints", () => {
       .field("description", "description")
       .field("country", "5d891e1f6a7d8d996733f26c")
       .field("countryCode", "FR")
-      .attach('myFile', 'samples/artworks/6caf2a4566ae219333e95053069c0eb4.png');
-    console.log(response);
+      .attach('myFile', 'tests/mock-data/20170813_181727.jpg');
     expect(response.status).toBe(201);
-    // expect(response.body).toMatchObject({message: 'Please provide an image'})
+    expect(response.body).toHaveProperty("artworks");
+    expect(response.body.artworks.length).toBe(1);
+    expect(response.body.artworks[0]).toHaveProperty("_id");
+    expect(response.body.artworks[0]).toHaveProperty("city");
+
+    // response = await request.get("/api/v1/artworks/");
+    // expect(response.status).toBe(200);
+    // console.log(response.body);
+    // expect(response.body).toHaveProperty("artworks");
+    // expect(response.body.artworks.length).toBe(1);
+    done();
   });
+
 });
