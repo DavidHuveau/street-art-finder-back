@@ -2,7 +2,6 @@ const supertest = require("supertest");
 const app = require("../app"); // our Node application
 const request = supertest(app);
 const database = require("../models/Database");
-// const ArtworkModel = require("../models/ArtworkModel");
 
 describe("Artworks endpoints", () => {
   beforeAll(async done => {
