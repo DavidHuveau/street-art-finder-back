@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoSanitize = require('express-mongo-sanitize');
 const passport = require("passport");
-require("../passport");
+require("../tools/passport");
 require("dotenv").config();
 
 const app = express();
@@ -18,9 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(mongoSanitize({ replaceWith: '_' }));
 
 const ROOT_API = process.env.ROOT_API;
+const ENV = process.env.NODE_ENV || "development";
 app.use(`${ROOT_API}/artworks`, require("./ArtworksRoute"));
 app.use(`${ROOT_API}/countries`, require("./CountriesRoute"));
-app.use(`${ROOT_API}/public`, express.static("public"));
+app.use(`${ROOT_API}/public`, express.static(`public/${ENV}`));
 app.use(
   `${ROOT_API}/proposals`,
   passport.authenticate("jwt", { session: false }),

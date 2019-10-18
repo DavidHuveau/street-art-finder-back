@@ -1,7 +1,9 @@
 const ImageResizer = require("../tools/ImageResizer");
+require("dotenv").config();
 
-const THUMBNAILS_FOLDER = "public/thumbnails";
-const ARTWORKS_FOLDER = "public/artworks";
+const ENV = process.env.NODE_ENV || "development";
+const THUMBNAILS_FOLDER = `public/${ENV}/thumbnails`;
+const ARTWORKS_FOLDER = `public/${ENV}/artworks`;
 
 const resize = async (req, res, next) => {
   const { file } = req;

@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
-const AuthenticationController = require("./controllers/AuthenticationController");
+const AuthenticationController = require("../controllers/AuthenticationController");
 require("dotenv").config();
 
 const JWT_SIGN_SECRET = process.env.JWT_SIGN_SECRET;
