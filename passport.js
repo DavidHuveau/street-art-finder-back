@@ -30,7 +30,7 @@ passport.use(
           // if the user is ok we return the user object
           return cb(null, data);
         })
-        .catch(err => {@
+        .catch(err => {
           // console.log(err);
           if (err) return cb(err);
         });
