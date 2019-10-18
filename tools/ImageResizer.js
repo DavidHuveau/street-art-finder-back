@@ -43,14 +43,17 @@ class Resize {
         // withoutEnlargement: true,
         fit: sharp.fit.cover // crop to cover both provided dimensions
       })
-      .png()
+      .jpeg({
+        quality: 50, // to prevent chroma subsampling when quality <= 90
+        chromaSubsampling: '4:4:4'
+      })
       .toFile(filePath);
 
     return resizedFileName;
   }
 
   static extractFileName(initialFilePath) {
-    return initialFilePath.split("/").pop() + ".png";
+    return initialFilePath.split("/").pop() + ".jpg";
   }
 
   resizedFilePath(fileName) {

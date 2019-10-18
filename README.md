@@ -24,6 +24,3 @@ https://dev.to/nedsoft/testing-nodejs-express-api-with-jest-and-supertest-1km6
 https://zellwk.com/blog/endpoint-testing/
 http://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
 https://github.com/rithmschool/express-pg-jest-supertest/blob/master/__tests__/routes.test.js
-
-Integrating MongoDB Atlas with Heroku Private Spaces:
-https://www.mongodb.com/blog/post/integrating-mongodb-atlas-with-heroku-private-spaces
