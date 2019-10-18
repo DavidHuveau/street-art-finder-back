@@ -1,6 +1,6 @@
 const supertest = require("supertest");
-const app = require("../app"); // our Node application
-const request = supertest(app);
+const routes = require("../routes/routes"); // our Node application
+const request = supertest(routes);
 const database = require("../models/Database");
 
 describe("Artworks endpoints", () => {

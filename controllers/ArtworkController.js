@@ -100,6 +100,7 @@ const Artwork = class {
     const countryCode = DOMPurify.sanitize(req.body.countryCode);
     const description = DOMPurify.sanitize(req.body.description);
     const country = DOMPurify.sanitize(req.body.country);
+    const artistName = DOMPurify.sanitize(req.body.artistName);
     if (!city || !zipCode || !adressStreet || !countryCode) {
       return res.status(400).send({
         message:
@@ -113,6 +114,7 @@ const Artwork = class {
       .then(data => {
         const artwork = new ArtworkModel({
           userName: userName,
+          artistName: artistName,
           adressStreet: adressStreet,
           zipCode: zipCode,
           city: city,

@@ -1,8 +1,8 @@
 const express = require("express");
 const ArtworkController = require("../controllers/ArtworkController");
 const router = express.Router();
-const upload = require("../UploadMiddleware");
-const resize = require("../ResizerMiddleware");
+const upload = require("../middlewares/UploadMiddleware");
+const resize = require("../middlewares/ResizerMiddleware");
 
 router
   .route("/")

@@ -1,4 +1,4 @@
-const ImageResizer = require("./tools/ImageResizer");
+const ImageResizer = require("../tools/ImageResizer");
 
 const THUMBNAILS_FOLDER = "public/thumbnails";
 const ARTWORKS_FOLDER = "public/artworks";

@@ -9,6 +9,10 @@ const artworkSchema = new Schema(
       trim: true,
       minlength: 3
     },
+    artistName: {
+      type: String,
+      trim: true
+    },
     adressStreet: {
       type: String,
       required: true,

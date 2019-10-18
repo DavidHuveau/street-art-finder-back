@@ -1,4 +1,4 @@
-const app = require('./app');
+const routes = require("./routes/routes");
 const database = require("./models/Database");
 
 require("dotenv").config();
@@ -12,7 +12,7 @@ database.connect()
     console.log("Could not connect to the database. Exiting now...", err);
   });
 
-app.listen(SERVER_PORT, err => {
+routes.listen(SERVER_PORT, err => {
   if (err) {
     throw new Error("Something bad happened...");
   }
