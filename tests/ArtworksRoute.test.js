@@ -50,7 +50,7 @@ describe("Artworks endpoints", () => {
       .field("zipCode", "51100")
       .field("city", "Reims")
       .field("description", "description")
-      .field("country", "5d891e1f6a7d8d996733f26c")
+      .field("country", "5d8919ca6a7d8d996731b976")
       .field("countryCode", "FR")
       .attach('myFile', 'tests/mock-data/20170813_181727.jpg');
     expect(response.status).toBe(201);

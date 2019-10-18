@@ -40,7 +40,7 @@
 						},
 						{
 							"key": "country",
-							"value": "5c87d82de78b4e40b133c55b",
+							"value": "5d8919ca6a7d8d996731b976",
 							"type": "text"
 						},
 						{
@@ -51,7 +51,12 @@
 						{
 							"key": "myFile",
 							"type": "file",
-							"src": []
+							"src": "/Users/david/Documents/positive-spirit/2016-11-11 16.30.01.jpg"
+						},
+						{
+							"key": "artistName",
+							"value": "Andy3",
+							"type": "text"
 						}
 					]
 				},
