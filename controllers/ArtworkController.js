@@ -4,6 +4,7 @@ const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const window = (new JSDOM('')).window;
 const DOMPurify = createDOMPurify(window);
+const fs = require('fs');
 
 const Artwork = class {
   static getAll(req, res) {
@@ -337,6 +338,14 @@ const Artwork = class {
         if (!data) {
           return res.status(404).send({
             message: "Data not found with id: " + id
+          });
+        }
+        if (data.photoFileName.length > 0) {
+          const fileToDeleteInTmpFolder = `./tmp/${data.photoFileName.split(".")[0]}`;
+          fs.stat(fileToDeleteInTmpFolder, (err, stats) => {
+            if (!err) {
+              fs.unlink(fileToDeleteInTmpFolder, () => {});
+            }
           });
         }
         res.status(204).send();
