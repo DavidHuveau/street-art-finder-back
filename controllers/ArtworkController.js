@@ -5,6 +5,10 @@ const { JSDOM } = require('jsdom');
 const window = (new JSDOM('')).window;
 const DOMPurify = createDOMPurify(window);
 const fs = require('fs');
+require("dotenv").config();
+const publishPhoto = require("../tools/post-intagram");
+
+const ENV = process.env.NODE_ENV || "development";
 
 const Artwork = class {
   static getAll(req, res) {
@@ -70,7 +74,6 @@ const Artwork = class {
       });
   }
 
-  // TODO: use async/await
   static create(req, res) {
     const { file, photoFileName } = req;
     // console.debug(file);
@@ -334,13 +337,23 @@ const Artwork = class {
       },
       { new: true }
     )
+      .populate("country", "name")
       .then(data => {
         if (!data) {
           return res.status(404).send({
             message: "Data not found with id: " + id
           });
         }
-        if (data.photoFileName.length > 0) {
+        const { photoFileName, adressStreet, zipCode, city, country } = data;
+        if (photoFileName.length > 0) {
+          // if(ENV === "production") {
+          if(ENV === "development") {
+            const caption = `${adressStreet}, ${zipCode}, ${city} (${country.name.toUpperCase()}) #streetart`;
+            const path = `public/${ENV}/artworks/${data.photoFileName}`;
+            // console.log(">>" + path);
+            // console.log(caption);
+            publishPhoto(path, caption);
+          }
           const fileToDeleteInTmpFolder = `./tmp/${data.photoFileName.split(".")[0]}`;
           fs.stat(fileToDeleteInTmpFolder, (err, stats) => {
             if (!err) {

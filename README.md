@@ -19,6 +19,9 @@ https://scotch.io/@401/mongodb-injection-in-nodejs
 Sanitization:
 https://dev.to/jam3/how-to-prevent-xss-attacks-when-using-dangerouslysetinnerhtml-in-react-1464
 
+NodeJS Instagram private API client:
+https://github.com/dilame/instagram-private-api
+
 Testing NodeJs/Express API with Jest and Supertest:
 https://dev.to/nedsoft/testing-nodejs-express-api-with-jest-and-supertest-1km6
 https://zellwk.com/blog/endpoint-testing/
