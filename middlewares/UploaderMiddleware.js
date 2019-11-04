@@ -14,10 +14,17 @@ const fileFilter = (req, file, cb) => {
   cb(null, true);
 };
 
-const upload = multer({
+const uploader = multer({
   dest: "tmp/",
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: fileFilter
 });
 
-module.exports = upload;
+const uploaderSingleFile = formDataKey => uploader.single(formDataKey);
+
+module.exports = (req, res, next) => uploaderSingleFile(req, res, err => {
+  if (err instanceof multer.MulterError) {
+    // A Multer error occurred when uploading.
+    console.log(err);
+  }
+});
