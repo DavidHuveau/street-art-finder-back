@@ -8,6 +8,7 @@ router
   .route("/")
   .get(ArtworkController.getAll)
   .post(uploader("myFile"), resize, ArtworkController.create);
+
 // router.route("/search").get(ArtworkController.search);
 router.route("/searchByCity").get(ArtworkController.searchByCity);
 router.route("/:id").get(ArtworkController.getById);
@@ -15,3 +16,5 @@ router.route("/:id").get(ArtworkController.getById);
 // .delete(ArtworkController.delete);
 
 module.exports = router;
+
+

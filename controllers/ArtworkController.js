@@ -14,15 +14,10 @@ const Artwork = class {
   static getAll(req, res) {
     ArtworkModel.find({})
       .then(data => {
-        const response = {
-          artworks: [...data]
-        };
-        res.send(response);
+        res.send({ artworks: [...data] });
       })
       .catch(err => {
-        res.status(500).send({
-          message: err.message
-        });
+        res.status(500).send({ message: err.message });
       });
   }
 
@@ -32,26 +27,17 @@ const Artwork = class {
     ArtworkModel.find({ _id: id })
       .then(data => {
         if (!data) {
-          return res.status(404).send({
-            message: "Data not found with id: " + id
-          });
+          return res.status(404).send({ message: "Data not found with id: " + id });
         }
-        const response = {
-          artworks: [...data]
-        };
-        res.send(response);
+        res.send({ artworks: [...data] });
       })
       .catch(err => {
         // format: /^[0-9a-fA-F]{24}$/
         if (err.kind === "ObjectId") {
-          return res.status(422).send({
-            message: "ObjectId failed for: " + id
-          });
+          return res.status(422).send({ message: "ObjectId failed for: " + id });
         }
         // console.log(err);
-        res.status(500).send({
-          message: "Something wrong retrieving with id: " + id
-        });
+        res.status(500).send({ message: "Something wrong retrieving with id: " + id });
       });
   }
 
@@ -62,15 +48,10 @@ const Artwork = class {
 
     ArtworkModel.find(query)
       .then(data => {
-        const response = {
-          artworks: [...data]
-        };
-        res.send(response);
+        res.send({ artworks: [...data] });
       })
       .catch(err => {
-        res.status(500).send({
-          message: err.message
-        });
+        res.status(500).send({ message: err.message });
       });
   }
 
@@ -80,21 +61,15 @@ const Artwork = class {
     // console.debug(`>photoFileName : ${photoFileName}`);
 
     if (req.fileValidationError) {
-      return res.status(400).send({
-        message: req.fileValidationError
-      });
+      return res.status(400).send({ message: req.fileValidationError });
     }
 
     if (!file) {
-      return res.status(400).send({
-        message: "Please provide an image"
-      });
+      return res.status(400).send({ message: "Please provide an image" });
     }
 
     if (!Object.keys(req.body).length) {
-      return res.status(400).send({
-        message: "Data content can not be empty"
-      });
+      return res.status(400).send({ message: "Data content can not be empty" });
     }
 
     const userName = DOMPurify.sanitize(req.body.userName);
@@ -106,10 +81,7 @@ const Artwork = class {
     const country = DOMPurify.sanitize(req.body.country);
     const artistName = DOMPurify.sanitize(req.body.artistName);
     if (!city || !zipCode || !adressStreet || !countryCode) {
-      return res.status(400).send({
-        message:
-        "Missing fields in the body: city or zipCode or adressStreet or countryCode"
-      });
+      return res.status(400).send({ message: "Missing fields in the body: city or zipCode or adressStreet or countryCode" });
     }
 
     const queryString = `${adressStreet}, ${zipCode}, ${city}`;
@@ -134,22 +106,15 @@ const Artwork = class {
         artwork
           .save()
           .then(data => {
-            const response = {
-              artworks: [data]
-            };
-            res.status(201).send(response);
+            res.status(201).send({ artworks: [data] });
           })
           .catch(err => {
             // console.log(err);
-            res.status(500).send({
-              message: "Something wrong creating"
-            });
+            res.status(500).send({ message: "Something wrong creating" });
           });
       })
       .catch(err => {
-        return res.status(500).send({
-          message: err.message
-        });
+        return res.status(500).send({ message: err.message });
       });
   }
 
@@ -239,16 +204,12 @@ const Artwork = class {
   // TODO: add an optional parameter for precision search (maxDistance)
   static searchByCity(req, res) {
     if (!Object.keys(req.query).length) {
-      return res.status(400).send({
-        message: "query string can not be empty"
-      });
+      return res.status(400).send({ message: "query string can not be empty" });
     }
 
     const { city, countryCode } = req.query;
     if (!city || !countryCode) {
-      return res.status(400).send({
-        message: "Missing fields in the query: city or countryCode"
-      });
+      return res.status(400).send({ message: "Missing fields in the query: city or countryCode" });
     }
 
     const queryString = city;
@@ -272,26 +233,16 @@ const Artwork = class {
         })
           .then(data => {
             if (!data) {
-              return res.status(404).send({
-                message: "Coordonates not found"
-              });
+              return res.status(404).send({ message: "Coordonates not found" });
             }
-            const response = {
-              startPosition: gpsCoordonates,
-              artworks: [...data]
-            };
-            res.send(response);
+            res.send({ startPosition: gpsCoordonates, artworks: [...data] });
           })
           .catch(err => {
-            res.status(500).send({
-              message: "Something wrong searching"
-            });
+            res.status(500).send({ message: "Something wrong searching" });
           });
       })
       .catch(err => {
-        return res.status(500).send({
-          message: err.message
-        });
+        return res.status(500).send({ message: err.message });
       });
   }
 
@@ -340,9 +291,7 @@ const Artwork = class {
       .populate("country", "name")
       .then(data => {
         if (!data) {
-          return res.status(404).send({
-            message: "Data not found with id: " + id
-          });
+          return res.status(404).send({ message: "Data not found with id: " + id });
         }
         const { photoFileName, adressStreet, zipCode, city, country } = data;
         if (photoFileName.length > 0) {
@@ -366,13 +315,9 @@ const Artwork = class {
       .catch(err => {
         // format: /^[0-9a-fA-F]{24}$/
         if (err.kind === "ObjectId") {
-          return res.status(422).send({
-            message: "ObjectId failed for: " + id
-          });
+          return res.status(422).send({ message: "ObjectId failed for: " + id });
         }
-        res.status(500).send({
-          message: "Something wrong  with id: " + id
-        });
+        res.status(500).send({ message: "Something wrong  with id: " + id });
       });
   }
 };

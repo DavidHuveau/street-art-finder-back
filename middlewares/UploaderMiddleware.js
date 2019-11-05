@@ -1,5 +1,7 @@
 const multer = require("multer");
 
+const ERROR_CODE_FILE_SIZE = "LIMIT_FILE_SIZE";
+
 const fileFilter = (req, file, cb) => {
   // console.log(req.body);
   // console.log(file);
@@ -8,7 +10,6 @@ const fileFilter = (req, file, cb) => {
   const allowedMimes = ["image/jpeg", "image/png", "image/gif"];
   if (!allowedMimes.includes(file.mimetype)) {
     req.fileValidationError = "goes wrong on the mimetype...";
-    // return cb(new Error("goes wrong on the mimetype"));
     return cb(null, false);
   }
   cb(null, true);
@@ -20,11 +21,15 @@ const uploader = multer({
   fileFilter: fileFilter
 });
 
-const uploaderSingleFile = formDataKey => uploader.single(formDataKey);
-
-module.exports = (req, res, next) => uploaderSingleFile(req, res, err => {
-  if (err instanceof multer.MulterError) {
-    // A Multer error occurred when uploading.
-    console.log(err);
-  }
-});
+module.exports = keyFile => (req, res, next) => {
+  uploader.single(keyFile)(req, res, err => {
+    if (err instanceof multer.MulterError) {
+      if(err.code === ERROR_CODE_FILE_SIZE)
+        res.status(500).send({ message: "Picture is too large." });
+      else
+        res.status(500).send({ message: "Uploade picture failed." });
+    } else {
+      next(err);
+    }
+  })
+};

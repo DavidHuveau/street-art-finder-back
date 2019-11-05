@@ -5,9 +5,7 @@ const Country = class {
     CountryModel.find({})
       .then(data => res.send(data))
       .catch(err => {
-        res.status(500).send({
-          message: err.message
-        });
+        res.status(500).send({ message: err.message });
       });
   }
 };

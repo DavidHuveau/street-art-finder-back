@@ -10,13 +10,9 @@ const resize = async (req, res, next) => {
   // console.debug(file);
 
   if (req.fileValidationError)
-    res.status(400).send({
-      message: req.fileValidationError
-    });
+    res.status(400).send({ message: req.fileValidationError });
   else if (!file)
-    res.status(400).send({
-      message: "Please provide an image"
-    });
+    res.status(400).send({ message: "Please provide an image" });
   else {
     const resizer1 = new ImageResizer(THUMBNAILS_FOLDER);
     const resizer2 = new ImageResizer(ARTWORKS_FOLDER);

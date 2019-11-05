@@ -6,17 +6,13 @@ const SALT_ROUNDS = 10;
 const User = class {
   static createUser(req, res) {
     if (!Object.keys(req.body).length) {
-      return res.status(400).send({
-        message: "Data content can not be empty"
-      });
+      return res.status(400).send({ message: "Data content can not be empty" });
     }
 
     const { login, plaintextPassword } = req.body;
     // console.log(login, plaintextPassword);
     if (!login || !plaintextPassword) {
-      return res.status(400).send({
-        message: "Missing fields in the body: login or password"
-      });
+      return res.status(400).send({ message: "Missing fields in the body: login or password" });
     }
 
     const salt = bcrypt.genSaltSync(SALT_ROUNDS);
@@ -34,13 +30,9 @@ const User = class {
       .catch(err => {
         // console.log(err.code);
         if (err.code === 11000) {
-          return res.status(422).send({
-            message: "Duplicate login: " + login
-          });
+          return res.status(422).send({ message: "Duplicate login: " + login });
         }
-        res.status(500).send({
-          message: "Something wrong creating"
-        });
+        res.status(500).send({ message: "Something wrong creating" });
       });
   }
 
