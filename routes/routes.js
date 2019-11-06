@@ -6,9 +6,10 @@ const mongoSanitize = require('express-mongo-sanitize');
 const passport = require("passport");
 require("../tools/passport");
 require("dotenv").config();
+const helmet = require('helmet')
 
 const app = express();
-app.disable('x-powered-by');
+app.use(helmet());
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json()); // for parsing application/json
