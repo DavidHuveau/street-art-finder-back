@@ -297,7 +297,7 @@ const Artwork = class {
         if (photoFileName.length > 0) {
           // if(ENV === "production") {
           if(ENV === "development") {
-            const caption = `${adressStreet}, ${zipCode}, ${city} (${country.name.toUpperCase()}) #streetart`;
+            const caption = `${adressStreet}, ${zipCode}, ${city} (${country.name.toUpperCase()}) #street_art_finder #streetart`;
             const path = `public/${ENV}/artworks/${data.photoFileName}`;
             // console.log(">>" + path);
             // console.log(caption);
