@@ -36,10 +36,8 @@ const artworkSchema = new Schema(
     },
     description: {
       type: String,
-      required: true,
       lowercase: true,
       trim: true
-      // minlength: 5
     },
     photoFileName: {
       type: String,
@@ -47,11 +45,13 @@ const artworkSchema = new Schema(
     },
     isActivated: {
       type: Boolean,
-      default: true
+      default: true,
+      required: true
     },
     isPublished: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
     },
     country: {
       type: Schema.Types.ObjectId,
