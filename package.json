@@ -22,7 +22,7 @@
     "helmet": "^3.21.2",
     "instagram-private-api": "^1.33.0",
     "jest": "^24.9.0",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.5",
     "morgan": "^1.9.1",
